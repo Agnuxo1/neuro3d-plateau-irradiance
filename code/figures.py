@@ -84,18 +84,21 @@ def fig_map(n3, out, key=0):
 
 def fig_cost(res, out):
     h2 = res["H2"]
-    fig, ax = plt.subplots(figsize=(5.4, 3.2))
-    labels = ["Neuro3D\n(全 %s 面)" % f"{h2['own_surfaces']:,}",
-              "Cycles 対照\n(%d 面)" % h2["control_surfaces"]]
-    vals = [h2["own_seconds_per_surface"] * 1e3,
-            h2["control_seconds_per_surface"] * 1e3]
-    ax.bar(labels, vals, color=[ACC, "#f4a261"], width=.55)
+    eq = h2.get("equal_load") or {}
+    fig, ax = plt.subplots(figsize=(6.0, 3.4))
+    labels = ["Neuro3D\n同じ 900 面", "Cycles 対照\n900 面",
+              "Neuro3D\n全 %s 面" % f"{h2['own_surfaces']:,}"]
+    vals = [eq.get("own_seconds_same_900", float("nan")) / h2["control_surfaces"] * 1e3,
+            h2["control_seconds_per_surface"] * 1e3,
+            h2["own_seconds_per_surface"] * 1e3]
+    ax.bar(labels, vals, color=[ACC, "#f4a261", "#8fd14f"], width=.55)
     ax.set_yscale("log")
     ax.set_ylabel("1 面あたりの計算時間 ms（対数軸）")
     for x, v in zip(labels, vals):
-        ax.text(x, v * 1.25, f"{v:.3g}", ha="center", color=FG, fontsize=10)
-    ax.set_title("同一機・同一時刻列での計算コスト（%.0f 倍）"
-                 % h2["speedup_per_surface"], color=FG)
+        ax.text(x, v * 1.3, f"{v:.3g}", ha="center", color=FG, fontsize=10)
+    ax.set_title("同じ負荷で %.0f 倍、街区全体に広げると %.0f 倍"
+                 % (eq.get("speedup", float("nan")), h2["speedup_per_surface"]),
+                 color=FG, fontsize=12)
     fig.tight_layout(); fig.savefig(out); plt.close(fig)
 
 

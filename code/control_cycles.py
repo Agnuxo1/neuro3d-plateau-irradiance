@@ -110,6 +110,8 @@ def main() -> None:
     ap.add_argument("--max-steps", type=int, default=0)
     ap.add_argument("--no-city", action="store_true",
                     help="bake without the city, for atlas validation")
+    ap.add_argument("--no-ground", dest="ground", action="store_false",
+                    help="omit the ground disc; the sky then lights from below")
     a = ap.parse_args(argv_after_dashes())
 
     tile = np.load(a.tile)
@@ -150,6 +152,24 @@ def main() -> None:
     if not a.no_city:
         city = make_mesh("city", verts, faces)
         city.data.materials.append(diffuse_material("black", (0.0, 0.0, 0.0)))
+
+    if a.ground:
+        # Without a ground, Blender's uniform world lights a surface from the
+        # whole sphere, while the own engine integrates the upper hemisphere
+        # only. A vertical probe then receives about 1.3 times too much
+        # diffuse light in the control. A large black disc at the base of the
+        # tile removes the half of the sky that a real ground blocks, so both
+        # engines see the same sky.
+        z0 = float(tri.reshape(-1, 3)[:, 2].min()) - 0.5
+        r = 20000.0
+        n = 64
+        ang = np.linspace(0, 2 * np.pi, n, endpoint=False)
+        ring = np.stack([r * np.cos(ang), r * np.sin(ang),
+                         np.full(n, z0)], axis=1)
+        gverts = np.vstack([[0.0, 0.0, z0], ring])
+        gfaces = [(0, i + 1, (i + 1) % n + 1) for i in range(n)]
+        ground = make_mesh("ground", gverts, gfaces)
+        ground.data.materials.append(diffuse_material("black", (0.0, 0.0, 0.0)))
 
     pv, pf, puv, side, res = probe_quads(centres, normals, a.probe_size)
     probes = make_mesh("probes", pv, pf)

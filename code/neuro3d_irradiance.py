@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import time
 
 import numpy as np
@@ -221,6 +222,13 @@ def run(args) -> dict:
         n, fallback = orient_outward(tri, n, sem, data["tri_bldg"])
     scene_mask = np.isfinite(n).all(1) & (area > 1e-6)
     keep = scene_mask & ~buried
+    if args.only_index:
+        # Equal-load measurement: the scene stays complete, but only the
+        # listed surfaces are queried, so the cost can be compared with a
+        # control that evaluates exactly those surfaces.
+        sel = np.zeros(len(tri), bool)
+        sel[np.load(args.only_index)["index"]] = True
+        keep &= sel
     print(f"triangles={len(tri)} usable={keep.sum()} "
           f"orientation_fallback_buildings={fallback} ({time.time()-t_or:.1f} s)")
 
@@ -307,6 +315,8 @@ def run(args) -> dict:
     meta = {
         "tile": args.tile,
         "device": str(dev),
+        "cpu_count": os.cpu_count(),
+        "torch_threads": torch.get_num_threads(),
         "gpu": torch.cuda.get_device_name(0) if dev.type == "cuda" else None,
         "triangles": int(len(tri)),
         "triangles_used": int(keep.sum()),
@@ -354,6 +364,8 @@ def main() -> None:
     ap.add_argument("--offset", type=float, default=0.05)
     ap.add_argument("--bias", type=float, default=0.05)
     ap.add_argument("--neigh", type=int, default=0, help="texel lookup radius")
+    ap.add_argument("--only-index", default="",
+                    help="npz with an 'index' array: query only those faces")
     ap.add_argument("--enclosed-threshold", type=float, default=0.02,
                     help="sky fraction below which a surface is called enclosed")
     ap.add_argument("--normals", default="", help="npz from orient_normals.py")

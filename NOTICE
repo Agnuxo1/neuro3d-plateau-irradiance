@@ -11,9 +11,12 @@ Project PLATEAU 3D city models (Ministry of Land, Infrastructure, Transport
 and Tourism, Japan). The tile used in this work is
 `51324376_bldg_6697_op.gml` from the Hiroshima 2022 CityGML package
 (`34100_hiroshima-shi_city_2022_citygml_3_op.zip`), obtained from the
-G-spatial Information Center. The data is **not redistributed** in this
-repository: `code/fetch_plateau.py` downloads the single tile that is needed,
-and the PLATEAU site policy governs its use.
+G-spatial Information Center. The original CityGML is **not redistributed**
+here: `code/fetch_plateau.py` downloads the single tile that is needed.
+The web viewer does ship a **derived work**: `web/district.bin` contains a
+triangle mesh of that tile (38,309 triangles) together with the computed
+irradiance, published under the PLATEAU site policy with the attribution
+shown on the page itself.
     https://www.mlit.go.jp/plateau/
     https://www.geospatial.jp/ckan/dataset/plateau-34100-hiroshima-shi-2022
 

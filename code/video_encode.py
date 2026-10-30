@@ -20,6 +20,8 @@ def main() -> None:
     ap.add_argument("--fps", type=int, default=24)
     ap.add_argument("--count", type=int, required=True)
     ap.add_argument("--res", type=int, default=1280)
+    ap.add_argument("--quality", default="HIGH",
+                    help="Cycles-style CRF label: LOWEST..PERC_LOSSLESS")
     a = ap.parse_args(sys.argv[sys.argv.index("--") + 1:])
 
     bpy.ops.wm.read_factory_settings(use_empty=True)
@@ -32,7 +34,7 @@ def main() -> None:
     scene.render.image_settings.file_format = "FFMPEG"
     scene.render.ffmpeg.format = "MPEG4"
     scene.render.ffmpeg.codec = "H264"
-    scene.render.ffmpeg.constant_rate_factor = "HIGH"
+    scene.render.ffmpeg.constant_rate_factor = a.quality
     scene.render.ffmpeg.ffmpeg_preset = "GOOD"
     scene.render.ffmpeg.audio_codec = "NONE"
     scene.render.filepath = a.out
