@@ -29,12 +29,33 @@ def main() -> None:
     ref = ctl["kwh"]
     sem = pr["sem"]
 
-    good = np.isfinite(own) & np.isfinite(ref) & (ref > 1.0)
+    def stats(mask, floor):
+        """Agreement metrics on a subset; `floor` guards the error ratio."""
+        o, r = own[mask], ref[mask]
+        resid = o - r
+        ss_tot = float(((r - r.mean()) ** 2).sum())
+        rel = np.abs(resid) / np.maximum(r, floor)
+        return {
+            "n": int(mask.sum()),
+            "r2": 1.0 - float((resid**2).sum()) / ss_tot if ss_tot > 0 else float("nan"),
+            "mean_bias_kwh": float(resid.mean()),
+            "mean_bias_fraction": float(resid.mean() / r.mean()),
+            "median_rel_error": float(np.median(rel)),
+            "p95_rel_error": float(np.percentile(rel, 95)),
+            "control_mean_kwh": float(r.mean()),
+            "own_mean_kwh": float(o.mean()),
+        }
+
+    finite = np.isfinite(own) & np.isfinite(ref)
+    # Pre-registered: every probe of the stratified sample. The `control > 1`
+    # subset below is a post-hoc view, declared as such, because a control
+    # value of a fraction of a kWh turns any difference into a huge ratio.
+    all_probes = stats(finite, 1.0)
+    good = finite & (ref > 1.0)
     o, r = own[good], ref[good]
     resid = o - r
-    ss_res = float((resid**2).sum())
     ss_tot = float(((r - r.mean()) ** 2).sum())
-    r2 = 1.0 - ss_res / ss_tot if ss_tot > 0 else float("nan")
+    r2 = 1.0 - float((resid**2).sum()) / ss_tot if ss_tot > 0 else float("nan")
     rel = np.abs(resid) / r
     bias = float(resid.mean())
 
@@ -52,6 +73,15 @@ def main() -> None:
         "probes_total": int(len(idx)),
         "C1_calibration_rel_error": cal_err,
         "C1_pass": bool(cal_err <= 0.03),
+        "H1_all_probes_preregistered": {
+            **all_probes,
+            "pass": bool(all_probes["r2"] >= 0.90
+                         and abs(all_probes["mean_bias_fraction"]) <= 0.10
+                         and all_probes["median_rel_error"] <= 0.15
+                         and all_probes["p95_rel_error"] <= 0.40),
+            "note": "every probe of the stratified sample, as the contract "
+                    "registered it. This is the verdict that counts.",
+        },
         "H1": {
             "r2": r2,
             "mean_bias_kwh": bias,
@@ -63,6 +93,8 @@ def main() -> None:
             "pass": bool(r2 >= 0.90 and abs(bias / r.mean()) <= 0.10
                          and np.median(rel) <= 0.15
                          and np.percentile(rel, 95) <= 0.40),
+            "note": "post-hoc subset: probes where the control exceeds "
+                    "1 kWh/m2/yr. The exclusion rule was not in the contract.",
         },
         "H2": {
             "own_seconds_total": meta_n3["light_transport_seconds"],
@@ -73,6 +105,19 @@ def main() -> None:
             "control_seconds_per_surface": s_ctl,
             "speedup_per_surface": s_ctl / s_own if s_own > 0 else float("inf"),
             "pass": bool(s_ctl / max(s_own, 1e-12) >= 20.0),
+            "note": "the own engine's cost is amortised over the whole "
+                    "district: one pass per direction serves every surface. "
+                    "equal_load below is the honest like-for-like figure.",
+            "equal_load": (
+                {
+                    "own_seconds_same_900": meta_n3.get("equal_load_seconds"),
+                    "speedup": (meta_ct["seconds_total"]
+                                / meta_n3["equal_load_seconds"])
+                    if meta_n3.get("equal_load_seconds") else None,
+                    "note": "both engines restricted to the same 900 probe "
+                            "surfaces and the same directions.",
+                }
+                if meta_n3.get("equal_load_seconds") else None),
         },
         "H3": {
             "shading_loss_fraction": float(1 - tot_all.sum() / open_all.sum()),

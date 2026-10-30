@@ -87,6 +87,22 @@ def main() -> None:
         cmd += ["--max-steps", str(a.max_steps)]
     sh(cmd)
 
+    # Equal-load run: same scene, same directions, only the probe surfaces.
+    eq = os.path.join(out, "neuro3d_equal_load.npz")
+    sh([sys.executable, "neuro3d_irradiance.py", "--tile", a.tile, "--out", eq,
+        *(["--normals", normals] if normals else []),
+        "--only-index", probes,
+        "--lat", str(a.lat), "--lon", str(a.lon), "--hour-step", str(a.hour_step),
+        "--device", a.device, "--texel", str(a.texel),
+        "--samples-per-m2", str(a.samples_per_m2)])
+    import json as _json
+    with open(n3 + ".meta.json", encoding="utf-8") as f:
+        m = _json.load(f)
+    with open(eq + ".meta.json", encoding="utf-8") as f:
+        m["equal_load_seconds"] = _json.load(f)["light_transport_seconds"]
+    with open(n3 + ".meta.json", "w", encoding="utf-8") as f:
+        _json.dump(m, f, indent=2)
+
     sh([sys.executable, "compare.py", "--neuro3d", n3, "--control", ctl,
         "--probes", probes, "--out", os.path.join(out, "CONTRATO-001.json")])
     print("pilot done", flush=True)

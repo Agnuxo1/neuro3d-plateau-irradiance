@@ -21,6 +21,12 @@ RAMP = np.array([[0.17, 0.06, 0.23], [0.17, 0.29, 0.56], [0.12, 0.62, 0.64],
                  [0.56, 0.82, 0.31], [1.00, 0.82, 0.40], [1.00, 0.48, 0.29]])
 
 
+def srgb_to_linear(c):
+    """Blender reads FLOAT_COLOR attributes as linear; the ramp is in sRGB."""
+    c = np.clip(c, 0.0, 1.0)
+    return np.where(c <= 0.04045, c / 12.92, ((c + 0.055) / 1.055) ** 2.4)
+
+
 def ramp(t):
     t = np.clip(t, 0, 1) * (len(RAMP) - 1)
     i = np.minimum(len(RAMP) - 2, np.floor(t).astype(int))
@@ -37,7 +43,8 @@ def main() -> None:
     ap.add_argument("--start", type=int, default=1)
     ap.add_argument("--frames", type=int, default=600)
     ap.add_argument("--res", type=int, default=1280)
-    ap.add_argument("--elev", type=float, default=32.0)
+    ap.add_argument("--elev", type=float, default=26.0)
+    ap.add_argument("--radius-factor", type=float, default=0.62)
     ap.add_argument("--az0", type=float, default=0.0)
     ap.add_argument("--az-span", type=float, default=140.0)
     ap.add_argument("--engine", choices=["eevee", "cycles-cpu"], default="eevee",
@@ -52,10 +59,10 @@ def main() -> None:
     tri = tri[m]
     if a.mode == "irr":
         v = per[m, 0] + per[m, 1]
-        v = v / max(np.percentile(v, 99.5), 1e-6)
+        v = v / max(np.percentile(v, 99.0), 1e-6)
     else:
         v = per[m, 4]
-    cols = ramp(v)
+    cols = srgb_to_linear(ramp(v))
 
     bpy.ops.wm.read_factory_settings(use_empty=True)
     scene = bpy.context.scene
@@ -110,7 +117,7 @@ def main() -> None:
     me.materials.append(mat)
 
     span = float(max(verts[:, 0].ptp(), verts[:, 1].ptp()))
-    target = np.array([0.0, 0.0, 60.0])
+    target = np.array([0.0, 0.0, 35.0])
     cam_data = bpy.data.cameras.new("cam")
     cam_data.lens = 40
     cam = bpy.data.objects.new("cam", cam_data)
@@ -118,7 +125,7 @@ def main() -> None:
     scene.camera = cam
 
     os.makedirs(a.out, exist_ok=True)
-    r = span * 0.95
+    r = span * a.radius_factor
     for k in range(a.frames):
         f = k / max(1, a.frames - 1)
         az = np.radians(a.az0 + a.az_span * f)

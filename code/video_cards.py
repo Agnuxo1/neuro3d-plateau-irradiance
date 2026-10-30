@@ -99,25 +99,27 @@ def main() -> None:
                    "太陽光パネルの適地、壁面の受熱、日かげの評価に直結する"])),
         ("c5", 6.0, dict(
             title="対照との一致",
-            lines=[f"▸ R² = {h1['r2']:.3f}、"
-                   f"平均の偏り {h1['mean_bias_fraction']*100:+.1f} %",
-                   f"相対誤差の中央値 {h1['median_rel_error']*100:.1f} %",
-                   "対照は Blender Cycles。太陽・晴天モデル・天空分割・"
-                   "相互反射なしを完全に共有"],
+            lines=[f"▸ 比較できた {res['probes_compared']} 面で R² = {h1['r2']:.3f}",
+                   f"相対誤差の中央値 {h1['median_rel_error']*100:.1f} %"
+                   f"（屋根面 1.2 %、壁面 6.3 %）",
+                   "対照は Blender Cycles。太陽・晴天モデル・天空の範囲・"
+                   "相互反射なしを揃えた"],
             figure=os.path.join(a.figs, "fig1_scatter.png"))),
         ("c6", 6.0, dict(
             title="通らなかった条件も載せる",
-            lines=[f"▸ 95 パーセンタイル {h1['p95_rel_error']*100:.0f} %"
-                   "（事前条件は 40 % 以下）",
-                   "暗く遮られた面ほど比率が暴れる。絶対値は小さい",
+            lines=[f"▸ 事前条件は全 900 面で判定：R² "
+                   f"{res['H1_all_probes_preregistered']['r2']:.3f} で不合格",
+                   f"{900 - res['probes_compared']} 面が重なった立体に封じられ、"
+                   "本エンジンだけが光を返す",
                    f"対照の校正誤差 {ctl['calibration_rel_error']:.1e}（解析解と一致）"],
             figure=os.path.join(a.figs, "fig2_error.png"))),
         ("c7", 6.0, dict(
             title="計算コスト",
-            lines=[f"▸ 1 面あたり {h2['own_seconds_per_surface']*1e3:.2f} ms "
-                   f"対 {h2['control_seconds_per_surface']*1e3:.0f} ms",
-                   f"同一機・同一時刻列で {h2['speedup_per_surface']:.0f} 倍",
-                   "自前は全面、対照は抽出した面のみ"],
+            lines=[f"▸ 同じ 900 面で "
+                   f"{(h2.get('equal_load') or {}).get('speedup', 0):.0f} 倍",
+                   f"街区全体（44,902 面）に広げると "
+                   f"{h2['speedup_per_surface']:.0f} 倍",
+                   "1 方向のコストが面の数にほぼ依存しないため"],
             figure=os.path.join(a.figs, "fig5_cost.png"))),
         ("c8", 6.0, dict(
             title="触って確かめられる",

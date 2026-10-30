@@ -82,3 +82,33 @@ puede sombrear. Su irradiancia horneada debe coincidir con el valor analítico
 - Nada sobre precisión de Cycles como verdad absoluta: Cycles es el control
   profesional, con su propio ruido de muestreo, declarado por el número de
   muestras.
+
+---
+
+# ADENDA, 2026-10-31 (no modifica lo registrado arriba)
+
+Una revisión independiente previa (`REVISION_COG_VERIFIER.md`, hecha con un
+subagente verificador y **declarada no equivalente a la auditoría de Codex**)
+encontró dos defectos en la comparación de la primera medición. Se corrigen aquí
+y se vuelve a medir; los números originales quedan en `experiments/LOG.md`.
+
+1. **El cielo no era el mismo en los dos motores.** El fondo uniforme de Blender
+   ilumina desde la esfera completa, mientras que el motor propio integra solo la
+   hemisfera superior. En el control sin ciudad, una superficie vertical recibía
+   ×1,30 en Cycles. Corrección: se añade al control un disco negro de 20 km de
+   radio a la cota mínima del teselado, que bloquea la mitad inferior del cielo
+   igual que lo haría el suelo. Las superficies horizontales no se ven afectadas,
+   y por eso la calibración C1 seguía pasando.
+2. **El veredicto de H1 se estaba leyendo sobre un subconjunto.** El contrato no
+   excluía sondas; el código filtraba las que el control deja por debajo de
+   1 kWh/m²·año (13 % de la muestra). A partir de ahora el veredicto registrado
+   se calcula sobre **las 900 sondas**, y el subconjunto se publica aparte y
+   etiquetado como posterior al contrato.
+
+Además se añade una medida de **carga igual**: el motor propio ejecutado sobre
+exactamente las mismas 900 superficies y las mismas direcciones, para que la
+comparación de coste no mezcle «coste amortizado en todo el distrito» con
+«coste de evaluar las mismas superficies».
+
+Estas tres cosas hacen la comparación más exigente para la tecnología propia, no
+menos. Lo que salga se publica igual.

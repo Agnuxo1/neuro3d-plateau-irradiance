@@ -9,6 +9,8 @@
   "engine": {
     "tile": "tile_51324376.npz",
     "device": "cpu",
+    "cpu_count": 16,
+    "torch_threads": 4,
     "gpu": null,
     "triangles": 46862,
     "triangles_used": 44902,
@@ -20,7 +22,7 @@
     "directions": 286,
     "time_steps": 288,
     "daylight_steps": 141,
-    "light_transport_seconds": 41.078,
+    "light_transport_seconds": 39.955,
     "annual_kwh_m2": {
       "mean": 601.6016235351562,
       "p05": 0.0,
@@ -33,32 +35,52 @@
     "fully_dark_surfaces": 6646,
     "mean_sky_view_factor": 0.4424683749675751,
     "shading_loss_fraction": 0.38969945907592773,
-    "model": "Hottel clear sky, isotropic 145-patch Tregenza dome, monthly representative days weighted by days per month. Clear-sky model, not measured weather."
+    "model": "Hottel clear sky, isotropic 145-patch Tregenza dome, monthly representative days weighted by days per month. Clear-sky model, not measured weather.",
+    "equal_load_seconds": 40.646
   },
   "contract": {
-    "probes_compared": 783,
+    "probes_compared": 772,
     "probes_total": 900,
     "C1_calibration_rel_error": 2.20208618475352e-06,
     "C1_pass": true,
+    "H1_all_probes_preregistered": {
+      "n": 900,
+      "r2": 0.8838798804306817,
+      "mean_bias_kwh": 90.71824925306771,
+      "mean_bias_fraction": 0.11921749436073509,
+      "median_rel_error": 0.04751213844792336,
+      "p95_rel_error": 572.6501770019523,
+      "control_mean_kwh": 760.9474577495083,
+      "own_mean_kwh": 851.6657104492188,
+      "pass": false,
+      "note": "every probe of the stratified sample, as the contract registered it. This is the verdict that counts."
+    },
     "H1": {
-      "r2": 0.9767158780883556,
-      "mean_bias_kwh": -4.983398041170877,
-      "mean_bias_fraction": -0.005442198942925492,
-      "median_rel_error": 0.08520015569494098,
-      "p95_rel_error": 6.047016965633014,
-      "control_mean_kwh": 915.6956762209095,
-      "own_mean_kwh": 910.7123413085938,
-      "pass": false
+      "r2": 0.9849312277991666,
+      "mean_bias_kwh": 35.326438486371536,
+      "mean_bias_fraction": 0.03982221528265663,
+      "median_rel_error": 0.02571918001134965,
+      "p95_rel_error": 8.178259763425718,
+      "control_mean_kwh": 887.1037996160126,
+      "own_mean_kwh": 922.4302368164062,
+      "pass": false,
+      "note": "post-hoc subset: probes where the control exceeds 1 kWh/m2/yr. The exclusion rule was not in the contract."
     },
     "H2": {
-      "own_seconds_total": 41.078,
+      "own_seconds_total": 39.955,
       "own_surfaces": 44902,
-      "own_seconds_per_surface": 0.0009148367556010868,
-      "control_seconds_total": 1000.95,
+      "own_seconds_per_surface": 0.0008898267337757783,
+      "control_seconds_total": 1075.59,
       "control_surfaces": 900,
-      "control_seconds_per_surface": 1.1121666666666667,
-      "speedup_per_surface": 1215.6995877761008,
-      "pass": true
+      "control_seconds_per_surface": 1.1950999999999998,
+      "speedup_per_surface": 1343.0704592666748,
+      "pass": true,
+      "note": "the own engine's cost is amortised over the whole district: one pass per direction serves every surface. equal_load below is the honest like-for-like figure.",
+      "equal_load": {
+        "own_seconds_same_900": 40.646,
+        "speedup": 26.46238252226541,
+        "note": "both engines restricted to the same 900 probe surfaces and the same directions."
+      }
     },
     "H3": {
       "shading_loss_fraction": 0.38969945907592773,
@@ -68,28 +90,30 @@
     },
     "by_class": {
       "wall": {
-        "n": 239,
-        "median_rel_error": 0.13783102214114765,
-        "mean_bias_fraction": -0.03544427787898201,
-        "control_mean_kwh": 461.53026879696586
+        "n": 233,
+        "median_rel_error": 0.06284950720959372,
+        "mean_bias_fraction": 0.0836769455341067,
+        "control_mean_kwh": 420.52083644523685
       },
       "roof": {
         "n": 250,
-        "median_rel_error": 0.01279496337032517,
-        "mean_bias_fraction": 0.024083856476569885,
-        "control_mean_kwh": 1444.6996860851425
+        "median_rel_error": 0.01212868291702826,
+        "mean_bias_fraction": 0.025407735913944716,
+        "control_mean_kwh": 1442.8344688251173
       },
       "lod1_or_other": {
-        "n": 294,
-        "median_rel_error": 0.13703370089538003,
-        "mean_bias_fraction": -0.03539901374053508,
-        "control_mean_kwh": 835.0648255687476
+        "n": 289,
+        "median_rel_error": 0.0395604169712337,
+        "mean_bias_fraction": 0.04381277211157749,
+        "control_mean_kwh": 782.5403501921878
       }
     },
     "engines": {
       "own": {
         "tile": "tile_51324376.npz",
         "device": "cpu",
+        "cpu_count": 16,
+        "torch_threads": 4,
         "gpu": null,
         "triangles": 46862,
         "triangles_used": 44902,
@@ -101,7 +125,7 @@
         "directions": 286,
         "time_steps": 288,
         "daylight_steps": 141,
-        "light_transport_seconds": 41.078,
+        "light_transport_seconds": 39.955,
         "annual_kwh_m2": {
           "mean": 601.6016235351562,
           "p05": 0.0,
@@ -114,7 +138,8 @@
         "fully_dark_surfaces": 6646,
         "mean_sky_view_factor": 0.4424683749675751,
         "shading_loss_fraction": 0.38969945907592773,
-        "model": "Hottel clear sky, isotropic 145-patch Tregenza dome, monthly representative days weighted by days per month. Clear-sky model, not measured weather."
+        "model": "Hottel clear sky, isotropic 145-patch Tregenza dome, monthly representative days weighted by days per month. Clear-sky model, not measured weather.",
+        "equal_load_seconds": 40.646
       },
       "control": {
         "engine": "Blender Cycles 4.5.9 LTS",
@@ -122,8 +147,8 @@
         "samples": 512,
         "probes": 900,
         "steps": 141,
-        "seconds_total": 1000.95,
-        "seconds_per_bake_mean": 7.099,
+        "seconds_total": 1075.59,
+        "seconds_per_bake_mean": 7.628,
         "calibration_kwh_m2_cycles": 1996.3710206176588,
         "calibration_kwh_m2_analytic": 1996.3666244462954,
         "calibration_rel_error": 2.20208618475352e-06,

@@ -53,11 +53,25 @@ def card(fig, x, y, w, h, title, value, color=ACC):
             transform=ax.transAxes)
 
 
-def image_page(pdf, path, title, sub, caption, rect=(.30, .10, .64, .66)):
+def wrap_jp(text, width=24):
+    """Hard-wrap Japanese text: matplotlib's own wrap uses the whole figure."""
+    out, line = [], ""
+    for ch in text:
+        line += ch
+        if len(line) >= width and ch in "。、）」：・ 　":
+            out.append(line); line = ""
+    if line:
+        out.append(line)
+    return chr(10).join(out)
+
+
+def image_page(pdf, path, title, sub, caption, rect=(.30, .10, .64, .66),
+               caption_width=24):
     fig = page(pdf, title, sub)
     ax = fig.add_axes(rect); ax.axis("off")
     ax.imshow(mpimg.imread(path))
-    fig.text(.06, .60, caption, color=DIM, fontsize=12.5, va="top", wrap=True)
+    fig.text(.06, .64, wrap_jp(caption, caption_width), color=DIM,
+             fontsize=12.5, va="top", linespacing=1.8)
     return fig
 
 
@@ -154,11 +168,12 @@ def main() -> None:
         # 5 ---------------------------------------------------------------
         fig = image_page(pdf, os.path.join(a.figs, "fig1_scatter.png"),
                          "結果 1：対照との一致",
-                         f"決定係数 R² = {h1['r2']:.3f}、"
-                         f"平均の偏り {h1['mean_bias_fraction']*100:+.1f} %",
+                         f"比較できた {res['probes_compared']} 面で R² = {h1['r2']:.3f}、"
+                         f"偏り {h1['mean_bias_fraction']*100:+.1f} %",
                          "層化抽出した面ごとに、自前エンジンと Cycles の年間日射量を比べた。"
-                         "屋根面はよく一致し、壁面は散らばりが大きい。"
-                         "相互反射を両者で切っているため、差は遮蔽と天空可視の扱いの差である。",
+                         "太陽位置・晴天モデル・天空の範囲・相互反射なしを両者で揃えてある。"
+                         "屋根面の誤差中央値は 1.2 %、壁面は 6.3 %。"
+                         "左下に並ぶ点は、対照がほぼ 0 を返す封じられた面である。",
                          rect=(.44, .12, .50, .66))
         pdf.savefig(fig, facecolor=BG); plt.close(fig)
 
@@ -167,46 +182,57 @@ def main() -> None:
                    "通らなかった条件も、そのまま載せる")
         ax = fig.add_axes([.52, .14, .44, .60]); ax.axis("off")
         ax.imshow(mpimg.imread(os.path.join(a.figs, "fig2_error.png")))
+        al = res["H1_all_probes_preregistered"]
+        eq = h2.get("equal_load") or {}
         rows = [
             ("対照の校正 C1（≤3 %）", f"{ctl['calibration_rel_error']*100:.5f} %",
              res["C1_pass"]),
-            ("R² ≥ 0.90", f"{h1['r2']:.3f}", h1["r2"] >= .90),
-            ("平均の偏り ≤10 %", f"{h1['mean_bias_fraction']*100:+.1f} %",
-             abs(h1["mean_bias_fraction"]) <= .10),
-            ("相対誤差の中央値 ≤15 %", f"{h1['median_rel_error']*100:.1f} %",
-             h1["median_rel_error"] <= .15),
-            ("95 パーセンタイル ≤40 %", f"{h1['p95_rel_error']*100:.0f} %",
-             h1["p95_rel_error"] <= .40),
-            ("計算コスト 20 倍以上", f"{h2['speedup_per_surface']:.0f} 倍", h2["pass"]),
+            (f"R² ≥ 0.90（全 {al['n']} 面）", f"{al['r2']:.3f}", al["r2"] >= .90),
+            ("平均の偏り ≤10 %", f"{al['mean_bias_fraction']*100:+.1f} %",
+             abs(al["mean_bias_fraction"]) <= .10),
+            ("相対誤差の中央値 ≤15 %", f"{al['median_rel_error']*100:.1f} %",
+             al["median_rel_error"] <= .15),
+            ("95 パーセンタイル ≤40 %", f"{al['p95_rel_error']*100:.0f} %",
+             al["p95_rel_error"] <= .40),
+            ("計算コスト 20 倍以上（同じ負荷）",
+             f"{eq.get('speedup', float('nan')):.0f} 倍",
+             eq.get("speedup", 0) >= 20),
         ]
         y = .70
         for name, val, ok in rows:
             fig.text(.06, y, name, color=DIM, fontsize=13.5, va="top")
-            fig.text(.355, y, val, color=FG, fontsize=13.5, va="top", ha="right")
-            fig.text(.375, y, "合格" if ok else "不合格",
+            fig.text(.375, y, val, color=FG, fontsize=13.5, va="top", ha="right")
+            fig.text(.395, y, "合格" if ok else "不合格",
                      color=OK if ok else WARN, fontsize=13.5, va="top")
             y -= .062
         fig.text(.06, y - .02,
-                 "不合格の中身：遮られた暗い面で相対誤差が大きい。"
-                 "絶対値が小さい面ほど比率が暴れる。",
-                 color=WARN, fontsize=12, va="top")
+                 "不合格の中身：900 面のうち "
+                 f"{al['n'] - res['probes_compared']} 面は、重なり合う CityGML 立体に"
+                 "封じられた面で、\n対照はほぼ 0、本エンジンは光を返す。検出もれである。\n"
+                 "それ以外の " f"{res['probes_compared']} 面では "
+                 f"R² {h1['r2']:.3f}、誤差中央値 {h1['median_rel_error']*100:.1f} %"
+                 "（契約外の事後集計）。",
+                 color=WARN, fontsize=11.5, va="top", linespacing=1.7)
         pdf.savefig(fig, facecolor=BG); plt.close(fig)
 
         # 7 ---------------------------------------------------------------
         fig = page(pdf, "結果 3：計算コスト", "同じ機械、同じ時刻列、同じ幾何")
         ax = fig.add_axes([.50, .14, .46, .60]); ax.axis("off")
         ax.imshow(mpimg.imread(os.path.join(a.figs, "fig5_cost.png")))
-        card(fig, .06, .52, .18, .16, "1 面あたり",
-             f"{h2['own_seconds_per_surface']*1e3:.2f} ms")
-        card(fig, .26, .52, .18, .16, "対照の 1 面あたり",
-             f"{h2['control_seconds_per_surface']*1e3:.0f} ms", WARN)
-        card(fig, .06, .30, .18, .16, "全面の計算時間",
-             f"{n3['light_transport_seconds']:.0f} 秒", OK)
-        card(fig, .26, .30, .18, .16, "光線方向数",
-             f"{n3['directions']:,}", DIM)
-        fig.text(.06, .22, "CPU 16 コアでの測定。GPU では同じ処理がさらに速くなるが、"
-                           "本件では測っていないので主張しない。",
-                 color=DIM, fontsize=12, va="top")
+        eq = h2.get("equal_load") or {}
+        card(fig, .06, .52, .18, .16, "同じ 900 面で",
+             f"{eq.get('speedup', float('nan')):.0f} 倍")
+        card(fig, .26, .52, .18, .16, "街区全体に広げると",
+             f"{h2['speedup_per_surface']:.0f} 倍", OK)
+        card(fig, .06, .30, .18, .16, "全 44,902 面の計算時間",
+             f"{n3['light_transport_seconds']:.0f} 秒", ACC)
+        card(fig, .26, .30, .18, .16, "対照（900 面）",
+             f"{h2['control_seconds_total']/60:.0f} 分", WARN)
+        fig.text(.06, .22, wrap_jp("16 コア CPU（PyTorch 4 スレッド）での測定。"
+                                   "1 方向のコストは面の数にほぼ依存しないので、"
+                                   "街区全体に広げるほど差が開く。"
+                                   "GPU では測っていないので主張しない。", 26),
+                 color=DIM, fontsize=12, va="top", linespacing=1.7)
         pdf.savefig(fig, facecolor=BG); plt.close(fig)
 
         # 8 ---------------------------------------------------------------
@@ -243,9 +269,10 @@ def main() -> None:
             "晴天モデルによる計算値で、実測気象ではない。"
             "気象データを入れれば実用値になる。",
             "相互反射と植生、地形を含めていない。両エンジンで同じ条件にしてある。",
-            "重なり合う CityGML 立体に埋もれた面を "
-            f"{n3['buried_faces_excluded']:,} 面検出して除いた。"
-            "検出は完全ではなく、暗い面の誤差として残っている。",
+            "重なり合う CityGML 立体に封じられた面を "
+            f"{n3['buried_faces_excluded']:,} 面検出して除いたが、検出もれがある。"
+            f"900 面の検証でも {900 - res['probes_compared']} 面が該当し、"
+            "そこでは本エンジンが数百 kWh/m² を過大に返す。これが事前条件を落とした原因である。",
             "次：気象データ、相互反射の 1 回反射、GPU 実装、"
             "そして PLATEAU 全市へのスケール。",
         ], size=14.5)
