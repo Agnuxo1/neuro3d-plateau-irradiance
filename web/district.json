@@ -1,0 +1,134 @@
+{
+  "triangles": 38309,
+  "kwh_per_m2_year": {
+    "min": 0.0,
+    "max": 2205.138916015625,
+    "mean": 705.107666015625,
+    "median": 578.4689331054688
+  },
+  "engine": {
+    "tile": "tile_51324376.npz",
+    "device": "cpu",
+    "gpu": null,
+    "triangles": 46862,
+    "triangles_used": 44902,
+    "splat_points": 4489124,
+    "texel_m": 0.5,
+    "neigh": 0,
+    "bias_base_m": 0.05,
+    "samples_per_m2": 2.0,
+    "directions": 286,
+    "time_steps": 288,
+    "daylight_steps": 141,
+    "light_transport_seconds": 41.078,
+    "annual_kwh_m2": {
+      "mean": 601.6016235351562,
+      "p05": 0.0,
+      "median": 413.96514892578125,
+      "p95": 1906.4517822265625,
+      "max": 2205.138916015625
+    },
+    "orientation_fallback_buildings": 0,
+    "buried_faces_excluded": 1924,
+    "fully_dark_surfaces": 6646,
+    "mean_sky_view_factor": 0.4424683749675751,
+    "shading_loss_fraction": 0.38969945907592773,
+    "model": "Hottel clear sky, isotropic 145-patch Tregenza dome, monthly representative days weighted by days per month. Clear-sky model, not measured weather."
+  },
+  "contract": {
+    "probes_compared": 783,
+    "probes_total": 900,
+    "C1_calibration_rel_error": 2.20208618475352e-06,
+    "C1_pass": true,
+    "H1": {
+      "r2": 0.9767158780883556,
+      "mean_bias_kwh": -4.983398041170877,
+      "mean_bias_fraction": -0.005442198942925492,
+      "median_rel_error": 0.08520015569494098,
+      "p95_rel_error": 6.047016965633014,
+      "control_mean_kwh": 915.6956762209095,
+      "own_mean_kwh": 910.7123413085938,
+      "pass": false
+    },
+    "H2": {
+      "own_seconds_total": 41.078,
+      "own_surfaces": 44902,
+      "own_seconds_per_surface": 0.0009148367556010868,
+      "control_seconds_total": 1000.95,
+      "control_surfaces": 900,
+      "control_seconds_per_surface": 1.1121666666666667,
+      "speedup_per_surface": 1215.6995877761008,
+      "pass": true
+    },
+    "H3": {
+      "shading_loss_fraction": 0.38969945907592773,
+      "svf_p05": 0.0,
+      "svf_p95": 0.9733830690383911,
+      "pass": true
+    },
+    "by_class": {
+      "wall": {
+        "n": 239,
+        "median_rel_error": 0.13783102214114765,
+        "mean_bias_fraction": -0.03544427787898201,
+        "control_mean_kwh": 461.53026879696586
+      },
+      "roof": {
+        "n": 250,
+        "median_rel_error": 0.01279496337032517,
+        "mean_bias_fraction": 0.024083856476569885,
+        "control_mean_kwh": 1444.6996860851425
+      },
+      "lod1_or_other": {
+        "n": 294,
+        "median_rel_error": 0.13703370089538003,
+        "mean_bias_fraction": -0.03539901374053508,
+        "control_mean_kwh": 835.0648255687476
+      }
+    },
+    "engines": {
+      "own": {
+        "tile": "tile_51324376.npz",
+        "device": "cpu",
+        "gpu": null,
+        "triangles": 46862,
+        "triangles_used": 44902,
+        "splat_points": 4489124,
+        "texel_m": 0.5,
+        "neigh": 0,
+        "bias_base_m": 0.05,
+        "samples_per_m2": 2.0,
+        "directions": 286,
+        "time_steps": 288,
+        "daylight_steps": 141,
+        "light_transport_seconds": 41.078,
+        "annual_kwh_m2": {
+          "mean": 601.6016235351562,
+          "p05": 0.0,
+          "median": 413.96514892578125,
+          "p95": 1906.4517822265625,
+          "max": 2205.138916015625
+        },
+        "orientation_fallback_buildings": 0,
+        "buried_faces_excluded": 1924,
+        "fully_dark_surfaces": 6646,
+        "mean_sky_view_factor": 0.4424683749675751,
+        "shading_loss_fraction": 0.38969945907592773,
+        "model": "Hottel clear sky, isotropic 145-patch Tregenza dome, monthly representative days weighted by days per month. Clear-sky model, not measured weather."
+      },
+      "control": {
+        "engine": "Blender Cycles 4.5.9 LTS",
+        "device": "CPU",
+        "samples": 512,
+        "probes": 900,
+        "steps": 141,
+        "seconds_total": 1000.95,
+        "seconds_per_bake_mean": 7.099,
+        "calibration_kwh_m2_cycles": 1996.3710206176588,
+        "calibration_kwh_m2_analytic": 1996.3666244462954,
+        "calibration_rel_error": 2.20208618475352e-06,
+        "probe_size_m": 1.0
+      }
+    }
+  }
+}

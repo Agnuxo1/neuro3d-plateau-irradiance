@@ -1,0 +1,6 @@
+# Pinned for reproducibility. The analytic self-tests need only numpy + torch.
+numpy==2.2.6
+torch==2.6.0
+shapely==2.1.2
+lxml==6.0.2
+matplotlib==3.10.0

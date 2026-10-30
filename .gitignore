@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+# PLATEAU data is never redistributed: fetch it with code/fetch_plateau.py
+data_plateau/
+*.gml
+*.zip
+*.7z
+# large intermediates
+results/*.npz
+!results/.gitkeep
+video/

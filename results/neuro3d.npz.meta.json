@@ -1,0 +1,29 @@
+{
+  "tile": "tile_51324376.npz",
+  "device": "cpu",
+  "gpu": null,
+  "triangles": 46862,
+  "triangles_used": 44902,
+  "splat_points": 4489124,
+  "texel_m": 0.5,
+  "neigh": 0,
+  "bias_base_m": 0.05,
+  "samples_per_m2": 2.0,
+  "directions": 286,
+  "time_steps": 288,
+  "daylight_steps": 141,
+  "light_transport_seconds": 41.078,
+  "annual_kwh_m2": {
+    "mean": 601.6016235351562,
+    "p05": 0.0,
+    "median": 413.96514892578125,
+    "p95": 1906.4517822265625,
+    "max": 2205.138916015625
+  },
+  "orientation_fallback_buildings": 0,
+  "buried_faces_excluded": 1924,
+  "fully_dark_surfaces": 6646,
+  "mean_sky_view_factor": 0.4424683749675751,
+  "shading_loss_fraction": 0.38969945907592773,
+  "model": "Hottel clear sky, isotropic 145-patch Tregenza dome, monthly representative days weighted by days per month. Clear-sky model, not measured weather."
+}

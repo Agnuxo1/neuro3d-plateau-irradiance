@@ -1,0 +1,863 @@
+{
+  "summary": {
+    "engine": "Blender Cycles 4.5.9 LTS",
+    "device": "CPU",
+    "samples": 512,
+    "probes": 900,
+    "steps": 141,
+    "seconds_total": 1000.95,
+    "seconds_per_bake_mean": 7.099,
+    "calibration_kwh_m2_cycles": 1996.3710206176588,
+    "calibration_kwh_m2_analytic": 1996.3666244462954,
+    "calibration_rel_error": 2.20208618475352e-06,
+    "probe_size_m": 1.0
+  },
+  "per_step": [
+    {
+      "step": 8,
+      "seconds": 8.14,
+      "calibration_w_m2": 64.80284124240453,
+      "calibration_analytic_w_m2": 64.80245068082598
+    },
+    {
+      "step": 9,
+      "seconds": 7.6,
+      "calibration_w_m2": 201.54609701000751,
+      "calibration_analytic_w_m2": 201.54522301357065
+    },
+    {
+      "step": 10,
+      "seconds": 7.42,
+      "calibration_w_m2": 338.19356399146307,
+      "calibration_analytic_w_m2": 338.1929017278736
+    },
+    {
+      "step": 11,
+      "seconds": 7.28,
+      "calibration_w_m2": 438.055007711577,
+      "calibration_analytic_w_m2": 438.0540842412148
+    },
+    {
+      "step": 12,
+      "seconds": 6.91,
+      "calibration_w_m2": 485.8152598578983,
+      "calibration_analytic_w_m2": 485.8137277935431
+    },
+    {
+      "step": 13,
+      "seconds": 7.01,
+      "calibration_w_m2": 475.66340796028965,
+      "calibration_analytic_w_m2": 475.6615385399746
+    },
+    {
+      "step": 14,
+      "seconds": 7.1,
+      "calibration_w_m2": 408.7769170959834,
+      "calibration_analytic_w_m2": 408.77531819689415
+    },
+    {
+      "step": 15,
+      "seconds": 7.49,
+      "calibration_w_m2": 293.7445726608572,
+      "calibration_analytic_w_m2": 293.74264037985523
+    },
+    {
+      "step": 16,
+      "seconds": 7.91,
+      "calibration_w_m2": 151.05060956311692,
+      "calibration_analytic_w_m2": 151.04944851307962
+    },
+    {
+      "step": 17,
+      "seconds": 8.48,
+      "calibration_w_m2": 29.010554404299427,
+      "calibration_analytic_w_m2": 29.010005592538707
+    },
+    {
+      "step": 32,
+      "seconds": 7.82,
+      "calibration_w_m2": 121.37553101133656,
+      "calibration_analytic_w_m2": 121.37488158889774
+    },
+    {
+      "step": 33,
+      "seconds": 7.4,
+      "calibration_w_m2": 289.4594033220111,
+      "calibration_analytic_w_m2": 289.4588117813129
+    },
+    {
+      "step": 34,
+      "seconds": 7.09,
+      "calibration_w_m2": 444.5713491103465,
+      "calibration_analytic_w_m2": 444.57023050360385
+    },
+    {
+      "step": 35,
+      "seconds": 6.82,
+      "calibration_w_m2": 557.1768041125636,
+      "calibration_analytic_w_m2": 557.1753031676217
+    },
+    {
+      "step": 36,
+      "seconds": 6.58,
+      "calibration_w_m2": 613.5142559053354,
+      "calibration_analytic_w_m2": 613.512600532691
+    },
+    {
+      "step": 37,
+      "seconds": 6.82,
+      "calibration_w_m2": 607.7753581406824,
+      "calibration_analytic_w_m2": 607.7739066921425
+    },
+    {
+      "step": 38,
+      "seconds": 6.79,
+      "calibration_w_m2": 540.5343589233945,
+      "calibration_analytic_w_m2": 540.5320670192469
+    },
+    {
+      "step": 39,
+      "seconds": 7.1,
+      "calibration_w_m2": 418.8615914208851,
+      "calibration_analytic_w_m2": 418.85971424046176
+    },
+    {
+      "step": 40,
+      "seconds": 7.59,
+      "calibration_w_m2": 258.45899982414414,
+      "calibration_analytic_w_m2": 258.45749074268446
+    },
+    {
+      "step": 41,
+      "seconds": 8.2,
+      "calibration_w_m2": 94.03116137196622,
+      "calibration_analytic_w_m2": 94.03028981118925
+    },
+    {
+      "step": 55,
+      "seconds": 8.29,
+      "calibration_w_m2": 65.22810258669219,
+      "calibration_analytic_w_m2": 65.22763634867877
+    },
+    {
+      "step": 56,
+      "seconds": 7.82,
+      "calibration_w_m2": 237.08319176297795,
+      "calibration_analytic_w_m2": 237.0822763270063
+    },
+    {
+      "step": 57,
+      "seconds": 7.07,
+      "calibration_w_m2": 427.3698877662422,
+      "calibration_analytic_w_m2": 427.3692776084627
+    },
+    {
+      "step": 58,
+      "seconds": 6.73,
+      "calibration_w_m2": 589.7799928295541,
+      "calibration_analytic_w_m2": 589.7788317425312
+    },
+    {
+      "step": 59,
+      "seconds": 6.49,
+      "calibration_w_m2": 703.3197589777864,
+      "calibration_analytic_w_m2": 703.3186651554323
+    },
+    {
+      "step": 60,
+      "seconds": 6.21,
+      "calibration_w_m2": 756.6860068306165,
+      "calibration_analytic_w_m2": 756.6842233542072
+    },
+    {
+      "step": 61,
+      "seconds": 6.81,
+      "calibration_w_m2": 745.0607753744124,
+      "calibration_analytic_w_m2": 745.0598841499283
+    },
+    {
+      "step": 62,
+      "seconds": 6.58,
+      "calibration_w_m2": 669.4906289938214,
+      "calibration_analytic_w_m2": 669.4881764947495
+    },
+    {
+      "step": 63,
+      "seconds": 6.91,
+      "calibration_w_m2": 536.9773480937417,
+      "calibration_analytic_w_m2": 536.9750859087231
+    },
+    {
+      "step": 64,
+      "seconds": 7.29,
+      "calibration_w_m2": 361.6326466196568,
+      "calibration_analytic_w_m2": 361.6309700579286
+    },
+    {
+      "step": 65,
+      "seconds": 7.71,
+      "calibration_w_m2": 170.29294096578818,
+      "calibration_analytic_w_m2": 170.29181292769528
+    },
+    {
+      "step": 66,
+      "seconds": 8.31,
+      "calibration_w_m2": 23.901967697557705,
+      "calibration_analytic_w_m2": 23.901505694630984
+    },
+    {
+      "step": 78,
+      "seconds": 8.58,
+      "calibration_w_m2": 28.738650692041272,
+      "calibration_analytic_w_m2": 28.738168990860803
+    },
+    {
+      "step": 79,
+      "seconds": 7.72,
+      "calibration_w_m2": 180.51481369346263,
+      "calibration_analytic_w_m2": 180.51407268889096
+    },
+    {
+      "step": 80,
+      "seconds": 7.29,
+      "calibration_w_m2": 382.9522846186916,
+      "calibration_analytic_w_m2": 382.951440342444
+    },
+    {
+      "step": 81,
+      "seconds": 7.1,
+      "calibration_w_m2": 576.5741529624138,
+      "calibration_analytic_w_m2": 576.5742399453715
+    },
+    {
+      "step": 82,
+      "seconds": 6.3,
+      "calibration_w_m2": 733.8244649730055,
+      "calibration_analytic_w_m2": 733.8235102422456
+    },
+    {
+      "step": 83,
+      "seconds": 6.01,
+      "calibration_w_m2": 838.9022268406338,
+      "calibration_analytic_w_m2": 838.9015947094081
+    },
+    {
+      "step": 84,
+      "seconds": 5.89,
+      "calibration_w_m2": 882.6132970128328,
+      "calibration_analytic_w_m2": 882.6119424630712
+    },
+    {
+      "step": 85,
+      "seconds": 6.02,
+      "calibration_w_m2": 861.332878887829,
+      "calibration_analytic_w_m2": 861.3317635506683
+    },
+    {
+      "step": 86,
+      "seconds": 6.28,
+      "calibration_w_m2": 776.8396501536814,
+      "calibration_analytic_w_m2": 776.8387328134911
+    },
+    {
+      "step": 87,
+      "seconds": 6.51,
+      "calibration_w_m2": 636.3800911115188,
+      "calibration_analytic_w_m2": 636.3776942408763
+    },
+    {
+      "step": 88,
+      "seconds": 6.89,
+      "calibration_w_m2": 453.23017331262736,
+      "calibration_analytic_w_m2": 453.228351474762
+    },
+    {
+      "step": 89,
+      "seconds": 7.31,
+      "calibration_w_m2": 249.62638338834205,
+      "calibration_analytic_w_m2": 249.62489812877698
+    },
+    {
+      "step": 90,
+      "seconds": 8.0,
+      "calibration_w_m2": 71.00183175201856,
+      "calibration_analytic_w_m2": 71.00130929886788
+    },
+    {
+      "step": 102,
+      "seconds": 8.29,
+      "calibration_w_m2": 89.40615836353517,
+      "calibration_analytic_w_m2": 89.4053979713872
+    },
+    {
+      "step": 103,
+      "seconds": 7.61,
+      "calibration_w_m2": 270.7077794903427,
+      "calibration_analytic_w_m2": 270.7068524239957
+    },
+    {
+      "step": 104,
+      "seconds": 7.1,
+      "calibration_w_m2": 474.7278025179847,
+      "calibration_analytic_w_m2": 474.72734700317415
+    },
+    {
+      "step": 105,
+      "seconds": 6.8,
+      "calibration_w_m2": 662.0461123721882,
+      "calibration_analytic_w_m2": 662.0455687472603
+    },
+    {
+      "step": 106,
+      "seconds": 6.31,
+      "calibration_w_m2": 811.4196367688105,
+      "calibration_analytic_w_m2": 811.4196895402216
+    },
+    {
+      "step": 107,
+      "seconds": 5.78,
+      "calibration_w_m2": 909.2705395075367,
+      "calibration_analytic_w_m2": 909.2695902264145
+    },
+    {
+      "step": 108,
+      "seconds": 5.71,
+      "calibration_w_m2": 947.4757631447048,
+      "calibration_analytic_w_m2": 947.4752157767928
+    },
+    {
+      "step": 109,
+      "seconds": 5.89,
+      "calibration_w_m2": 922.9844416013709,
+      "calibration_analytic_w_m2": 922.9837644922005
+    },
+    {
+      "step": 110,
+      "seconds": 6.1,
+      "calibration_w_m2": 837.7719226844602,
+      "calibration_analytic_w_m2": 837.7701161900868
+    },
+    {
+      "step": 111,
+      "seconds": 6.38,
+      "calibration_w_m2": 698.8543468963637,
+      "calibration_analytic_w_m2": 698.8526771970251
+    },
+    {
+      "step": 112,
+      "seconds": 6.71,
+      "calibration_w_m2": 518.5432912417841,
+      "calibration_analytic_w_m2": 518.5415927563737
+    },
+    {
+      "step": 113,
+      "seconds": 7.11,
+      "calibration_w_m2": 315.9622470551468,
+      "calibration_analytic_w_m2": 315.9605333373478
+    },
+    {
+      "step": 114,
+      "seconds": 8.01,
+      "calibration_w_m2": 124.53857168243667,
+      "calibration_analytic_w_m2": 124.53788479830979
+    },
+    {
+      "step": 126,
+      "seconds": 8.19,
+      "calibration_w_m2": 110.99184503194782,
+      "calibration_analytic_w_m2": 110.99106631137192
+    },
+    {
+      "step": 127,
+      "seconds": 7.51,
+      "calibration_w_m2": 294.2042755440018,
+      "calibration_analytic_w_m2": 294.2035532272804
+    },
+    {
+      "step": 128,
+      "seconds": 7.08,
+      "calibration_w_m2": 495.260069450597,
+      "calibration_analytic_w_m2": 495.25935799419807
+    },
+    {
+      "step": 129,
+      "seconds": 6.6,
+      "calibration_w_m2": 679.8549042739337,
+      "calibration_analytic_w_m2": 679.8553120759933
+    },
+    {
+      "step": 130,
+      "seconds": 6.59,
+      "calibration_w_m2": 828.1152979086718,
+      "calibration_analytic_w_m2": 828.1152087501843
+    },
+    {
+      "step": 131,
+      "seconds": 5.81,
+      "calibration_w_m2": 926.8677019816786,
+      "calibration_analytic_w_m2": 926.8685861753262
+    },
+    {
+      "step": 132,
+      "seconds": 5.7,
+      "calibration_w_m2": 968.0254131955423,
+      "calibration_analytic_w_m2": 968.0259423832317
+    },
+    {
+      "step": 133,
+      "seconds": 5.78,
+      "calibration_w_m2": 948.3254686589444,
+      "calibration_analytic_w_m2": 948.3243480253083
+    },
+    {
+      "step": 134,
+      "seconds": 5.9,
+      "calibration_w_m2": 869.3237383465599,
+      "calibration_analytic_w_m2": 869.3233343573004
+    },
+    {
+      "step": 135,
+      "seconds": 6.21,
+      "calibration_w_m2": 737.4026279596163,
+      "calibration_analytic_w_m2": 737.4004146064167
+    },
+    {
+      "step": 136,
+      "seconds": 6.6,
+      "calibration_w_m2": 563.8563586703192,
+      "calibration_analytic_w_m2": 563.8549967730717
+    },
+    {
+      "step": 137,
+      "seconds": 7.19,
+      "calibration_w_m2": 365.79985673078755,
+      "calibration_analytic_w_m2": 365.7984235562343
+    },
+    {
+      "step": 138,
+      "seconds": 8.01,
+      "calibration_w_m2": 170.66869210642855,
+      "calibration_analytic_w_m2": 170.66774953632307
+    },
+    {
+      "step": 139,
+      "seconds": 8.5,
+      "calibration_w_m2": 30.694183144845827,
+      "calibration_analytic_w_m2": 30.69382435734979
+    },
+    {
+      "step": 150,
+      "seconds": 8.3,
+      "calibration_w_m2": 85.18005402614918,
+      "calibration_analytic_w_m2": 85.17933941347738
+    },
+    {
+      "step": 151,
+      "seconds": 7.59,
+      "calibration_w_m2": 261.6041562866152,
+      "calibration_analytic_w_m2": 261.60337009353225
+    },
+    {
+      "step": 152,
+      "seconds": 7.11,
+      "calibration_w_m2": 464.0053517120697,
+      "calibration_analytic_w_m2": 464.00459597388146
+    },
+    {
+      "step": 153,
+      "seconds": 6.69,
+      "calibration_w_m2": 652.9797975586191,
+      "calibration_analytic_w_m2": 652.9802778149118
+    },
+    {
+      "step": 154,
+      "seconds": 6.69,
+      "calibration_w_m2": 806.9648247343166,
+      "calibration_analytic_w_m2": 806.9646249679961
+    },
+    {
+      "step": 155,
+      "seconds": 5.8,
+      "calibration_w_m2": 911.926034022628,
+      "calibration_analytic_w_m2": 911.9261731648332
+    },
+    {
+      "step": 156,
+      "seconds": 5.6,
+      "calibration_w_m2": 959.1515979905719,
+      "calibration_analytic_w_m2": 959.1507570405362
+    },
+    {
+      "step": 157,
+      "seconds": 5.71,
+      "calibration_w_m2": 944.857401750483,
+      "calibration_analytic_w_m2": 944.856026521902
+    },
+    {
+      "step": 158,
+      "seconds": 6.07,
+      "calibration_w_m2": 870.1667926159771,
+      "calibration_analytic_w_m2": 870.165622292845
+    },
+    {
+      "step": 159,
+      "seconds": 6.22,
+      "calibration_w_m2": 741.1133514539615,
+      "calibration_analytic_w_m2": 741.1119601443784
+    },
+    {
+      "step": 160,
+      "seconds": 6.6,
+      "calibration_w_m2": 568.755815409364,
+      "calibration_analytic_w_m2": 568.7545502423048
+    },
+    {
+      "step": 161,
+      "seconds": 7.0,
+      "calibration_w_m2": 370.0960365762654,
+      "calibration_analytic_w_m2": 370.0945550694658
+    },
+    {
+      "step": 162,
+      "seconds": 7.99,
+      "calibration_w_m2": 172.71965887447826,
+      "calibration_analytic_w_m2": 172.71857336751322
+    },
+    {
+      "step": 163,
+      "seconds": 8.52,
+      "calibration_w_m2": 30.297078549719785,
+      "calibration_analytic_w_m2": 30.29668643580272
+    },
+    {
+      "step": 174,
+      "seconds": 8.5,
+      "calibration_w_m2": 43.49355817544848,
+      "calibration_analytic_w_m2": 43.49308330703005
+    },
+    {
+      "step": 175,
+      "seconds": 7.8,
+      "calibration_w_m2": 203.9129814288154,
+      "calibration_analytic_w_m2": 203.912120508927
+    },
+    {
+      "step": 176,
+      "seconds": 7.28,
+      "calibration_w_m2": 407.7675517454421,
+      "calibration_analytic_w_m2": 407.76697181776694
+    },
+    {
+      "step": 177,
+      "seconds": 7.11,
+      "calibration_w_m2": 601.7677800457637,
+      "calibration_analytic_w_m2": 601.767791632248
+    },
+    {
+      "step": 178,
+      "seconds": 6.31,
+      "calibration_w_m2": 760.3209151221541,
+      "calibration_analytic_w_m2": 760.3204771911342
+    },
+    {
+      "step": 179,
+      "seconds": 6.0,
+      "calibration_w_m2": 868.02298855167,
+      "calibration_analytic_w_m2": 868.0225438545846
+    },
+    {
+      "step": 180,
+      "seconds": 5.89,
+      "calibration_w_m2": 915.6120520373307,
+      "calibration_analytic_w_m2": 915.6109897100647
+    },
+    {
+      "step": 181,
+      "seconds": 6.01,
+      "calibration_w_m2": 899.1733985926772,
+      "calibration_analytic_w_m2": 899.1722141738379
+    },
+    {
+      "step": 182,
+      "seconds": 6.28,
+      "calibration_w_m2": 820.0254787127848,
+      "calibration_analytic_w_m2": 820.0244232260856
+    },
+    {
+      "step": 183,
+      "seconds": 6.51,
+      "calibration_w_m2": 684.7519401995477,
+      "calibration_analytic_w_m2": 684.7504020232788
+    },
+    {
+      "step": 184,
+      "seconds": 6.82,
+      "calibration_w_m2": 505.53774971759947,
+      "calibration_analytic_w_m2": 505.5362832079707
+    },
+    {
+      "step": 185,
+      "seconds": 7.18,
+      "calibration_w_m2": 302.03533734784475,
+      "calibration_analytic_w_m2": 302.03431276414705
+    },
+    {
+      "step": 186,
+      "seconds": 8.01,
+      "calibration_w_m2": 110.60695816685927,
+      "calibration_analytic_w_m2": 110.6061810806986
+    },
+    {
+      "step": 199,
+      "seconds": 7.99,
+      "calibration_w_m2": 140.4877024963248,
+      "calibration_analytic_w_m2": 140.48693269088722
+    },
+    {
+      "step": 200,
+      "seconds": 7.59,
+      "calibration_w_m2": 335.501616460266,
+      "calibration_analytic_w_m2": 335.500784764664
+    },
+    {
+      "step": 201,
+      "seconds": 6.91,
+      "calibration_w_m2": 525.7029937703728,
+      "calibration_analytic_w_m2": 525.702133600324
+    },
+    {
+      "step": 202,
+      "seconds": 6.57,
+      "calibration_w_m2": 679.5729394303604,
+      "calibration_analytic_w_m2": 679.5719527877061
+    },
+    {
+      "step": 203,
+      "seconds": 6.22,
+      "calibration_w_m2": 780.4568667332026,
+      "calibration_analytic_w_m2": 780.4557736696136
+    },
+    {
+      "step": 204,
+      "seconds": 6.2,
+      "calibration_w_m2": 819.1030888744942,
+      "calibration_analytic_w_m2": 819.1024839383009
+    },
+    {
+      "step": 205,
+      "seconds": 6.3,
+      "calibration_w_m2": 792.1679621647975,
+      "calibration_analytic_w_m2": 792.1663053218047
+    },
+    {
+      "step": 206,
+      "seconds": 6.42,
+      "calibration_w_m2": 701.9467832554479,
+      "calibration_analytic_w_m2": 701.9448055645965
+    },
+    {
+      "step": 207,
+      "seconds": 6.89,
+      "calibration_w_m2": 556.5537592400152,
+      "calibration_analytic_w_m2": 556.5521674997833
+    },
+    {
+      "step": 208,
+      "seconds": 7.19,
+      "calibration_w_m2": 371.05297843298627,
+      "calibration_analytic_w_m2": 371.0516956113151
+    },
+    {
+      "step": 209,
+      "seconds": 7.69,
+      "calibration_w_m2": 173.0686147862584,
+      "calibration_analytic_w_m2": 173.06756140617983
+    },
+    {
+      "step": 210,
+      "seconds": 8.31,
+      "calibration_w_m2": 24.16468175635562,
+      "calibration_analytic_w_m2": 24.16422178472628
+    },
+    {
+      "step": 223,
+      "seconds": 8.48,
+      "calibration_w_m2": 77.21982362472707,
+      "calibration_analytic_w_m2": 77.21939267788092
+    },
+    {
+      "step": 224,
+      "seconds": 7.6,
+      "calibration_w_m2": 245.4567180091338,
+      "calibration_analytic_w_m2": 245.45605462611223
+    },
+    {
+      "step": 225,
+      "seconds": 7.11,
+      "calibration_w_m2": 420.54627084089935,
+      "calibration_analytic_w_m2": 420.5450486798027
+    },
+    {
+      "step": 226,
+      "seconds": 6.99,
+      "calibration_w_m2": 561.756779391969,
+      "calibration_analytic_w_m2": 561.7561177660707
+    },
+    {
+      "step": 227,
+      "seconds": 6.6,
+      "calibration_w_m2": 650.7263528167091,
+      "calibration_analytic_w_m2": 650.7248669882877
+    },
+    {
+      "step": 228,
+      "seconds": 6.5,
+      "calibration_w_m2": 678.3124566311524,
+      "calibration_analytic_w_m2": 678.3107113382088
+    },
+    {
+      "step": 229,
+      "seconds": 6.69,
+      "calibration_w_m2": 641.8964687841853,
+      "calibration_analytic_w_m2": 641.8940344379181
+    },
+    {
+      "step": 230,
+      "seconds": 6.91,
+      "calibration_w_m2": 544.9379024437433,
+      "calibration_analytic_w_m2": 544.9364786432703
+    },
+    {
+      "step": 231,
+      "seconds": 7.31,
+      "calibration_w_m2": 397.59636030489247,
+      "calibration_analytic_w_m2": 397.5945391360434
+    },
+    {
+      "step": 232,
+      "seconds": 7.78,
+      "calibration_w_m2": 220.09785692687305,
+      "calibration_analytic_w_m2": 220.09653710680328
+    },
+    {
+      "step": 233,
+      "seconds": 8.3,
+      "calibration_w_m2": 58.77252757481231,
+      "calibration_analytic_w_m2": 58.77192891371176
+    },
+    {
+      "step": 247,
+      "seconds": 8.73,
+      "calibration_w_m2": 20.746912920702158,
+      "calibration_analytic_w_m2": 20.746560403455675
+    },
+    {
+      "step": 248,
+      "seconds": 7.89,
+      "calibration_w_m2": 144.058034540974,
+      "calibration_analytic_w_m2": 144.05731759290165
+    },
+    {
+      "step": 249,
+      "seconds": 7.5,
+      "calibration_w_m2": 296.46677436782784,
+      "calibration_analytic_w_m2": 296.46596960353503
+    },
+    {
+      "step": 250,
+      "seconds": 7.3,
+      "calibration_w_m2": 425.0279155549563,
+      "calibration_analytic_w_m2": 425.0267380329645
+    },
+    {
+      "step": 251,
+      "seconds": 6.99,
+      "calibration_w_m2": 506.65958701887746,
+      "calibration_analytic_w_m2": 506.658717309521
+    },
+    {
+      "step": 252,
+      "seconds": 6.8,
+      "calibration_w_m2": 531.1529338962204,
+      "calibration_analytic_w_m2": 531.1518032233579
+    },
+    {
+      "step": 253,
+      "seconds": 7.11,
+      "calibration_w_m2": 495.80376077793454,
+      "calibration_analytic_w_m2": 495.8019393970011
+    },
+    {
+      "step": 254,
+      "seconds": 7.2,
+      "calibration_w_m2": 404.55762204538576,
+      "calibration_analytic_w_m2": 404.5557471825282
+    },
+    {
+      "step": 255,
+      "seconds": 7.61,
+      "calibration_w_m2": 269.3317807472719,
+      "calibration_analytic_w_m2": 269.3301675835696
+    },
+    {
+      "step": 256,
+      "seconds": 8.1,
+      "calibration_w_m2": 117.14975848717765,
+      "calibration_analytic_w_m2": 117.14870260678255
+    },
+    {
+      "step": 272,
+      "seconds": 8.37,
+      "calibration_w_m2": 76.7721955971887,
+      "calibration_analytic_w_m2": 76.7717217072155
+    },
+    {
+      "step": 273,
+      "seconds": 7.8,
+      "calibration_w_m2": 209.92959712734083,
+      "calibration_analytic_w_m2": 209.92868828063303
+    },
+    {
+      "step": 274,
+      "seconds": 7.4,
+      "calibration_w_m2": 335.2994845308998,
+      "calibration_analytic_w_m2": 335.2986980151119
+    },
+    {
+      "step": 275,
+      "seconds": 7.3,
+      "calibration_w_m2": 421.14416082537133,
+      "calibration_analytic_w_m2": 421.14318457159794
+    },
+    {
+      "step": 276,
+      "seconds": 7.0,
+      "calibration_w_m2": 454.3422224982139,
+      "calibration_analytic_w_m2": 454.3405404037568
+    },
+    {
+      "step": 277,
+      "seconds": 7.41,
+      "calibration_w_m2": 430.7235322913636,
+      "calibration_analytic_w_m2": 430.7219829104185
+    },
+    {
+      "step": 278,
+      "seconds": 7.3,
+      "calibration_w_m2": 353.2163831294603,
+      "calibration_analytic_w_m2": 353.21448080559674
+    },
+    {
+      "step": 279,
+      "seconds": 7.61,
+      "calibration_w_m2": 233.08249946085087,
+      "calibration_analytic_w_m2": 233.0810001000175
+    },
+    {
+      "step": 280,
+      "seconds": 8.19,
+      "calibration_w_m2": 97.49055132708924,
+      "calibration_analytic_w_m2": 97.48964185060316
+    }
+  ]
+}
