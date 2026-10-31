@@ -7,6 +7,14 @@ GPU なし。パストレーサとの一致は R² 0.985、調整に使ってい
 [![自動試験](https://github.com/Agnuxo1/neuro3d-plateau-irradiance/actions/workflows/selftest.yml/badge.svg)](https://github.com/Agnuxo1/neuro3d-plateau-irradiance/actions/workflows/selftest.yml)
 [![ライセンス](https://img.shields.io/badge/licence-Apache--2.0-8fd14f)](LICENSE)
 
+## 🎬 公式デモ動画 / Official demo video — YouTube
+
+[![Neuro3D × PLATEAU — Watch the Japanese-narrated demonstration on YouTube](https://img.youtube.com/vi/-YUxjHP-tCo/hqdefault.jpg)](https://youtu.be/-YUxjHP-tCo)
+
+**[▶ YouTubeで視聴 / Watch on YouTube (日本語音声付き)](https://youtu.be/-YUxjHP-tCo)** · [GitHub MP4 (same 106-second narration)](submission/PLATEAU_AWARD_2026_Neuro3D.mp4) · [日本語字幕 / Japanese subtitles](docs/narration/PLATEAU_AWARD_2026_Neuro3D_106s_Narrated_JA.srt)
+
+PLATEAU AWARD 2026 一般部門への提出済み作品。実測された都市日射量・天空率、二枚の深度バッファ、実験比較、応用例を紹介します。**1分46秒**。映像・数値・元の研究成果は変更していません。
+
 ![広島市中心部の年間日射量](docs/images/hero_irradiance.png)
 
 > Whole-district solar irradiance and sky view factor on Project PLATEAU CityGML LOD2, computed as
@@ -302,7 +310,7 @@ web/          three.js ビューア（GitHub Pages で公開）
 ## 状態 / Status
 
 PLATEAU AWARD 2026 一般部門（国土交通省）への応募作品。本エントリー締切は 2026-11-19 23:59 JST。
-**応募はまだ提出していません**（状態：検証済み／提出準備中）。応募そのものは作者本人が行います。
+**本エントリーは2026年10月31日に送信済み・事務局の受付確認メール受領済み（SUBMITTED — RECEIPT VERIFIED）。** 審査結果は未発表です。提出フォームを再送していません。追加の公開デモ動画：[YouTube](https://youtu.be/-YUxjHP-tCo)。
 数値は 2026-10-31 の実行によるものです。
 
 制作：Francisco Angulo de Lafuente（個人応募）
