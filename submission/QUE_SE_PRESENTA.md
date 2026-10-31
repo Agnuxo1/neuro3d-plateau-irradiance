@@ -25,7 +25,7 @@
 | 役割 | ファイル | 制限 | 実測 |
 |---|---|---|---|
 | プレゼン用スライド資料 | **`PLATEAU_AWARD_2026_Neuro3D.pdf`** | 10 MB 以内 | 15 ページ・2.40 MB |
-| 作品の動作がわかる動画 | **`PLATEAU_AWARD_2026_Neuro3D.mp4`** | 3 分以内 | 1 分 46 秒・1280×720・17.7 MB |
+| 作品の動作がわかる動画 | **`PLATEAU_AWARD_2026_Neuro3D.mp4`** | 3 分以内 | 1 分 46 秒・1280×720・19.4 MB・日本語音声付き（映像は同一） |
 | フォームに入力する本文 | **`application_text_ja.md`** | — | 7,809 バイト |
 
 > The two files in bold are the ones attached to the entry form, unless the applicant says
