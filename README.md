@@ -5,7 +5,7 @@
 
 Neuro3D × PLATEAU は、国土交通省 Project PLATEAU の CityGML LOD2 から、屋根・壁など**面ごとの年間日射量と天空率**を計算するオープンソース・エンジンです。光線を面ごとに追う代わりに、方向別の**前面・背面デプスバッファ**を使い、街区全体を一括評価します。
 
-**[▶ Open the live 3D viewer](https://agnuxo1.github.io/neuro3d-plateau-irradiance/)** · **[Presentation PDF](submission/PLATEAU_AWARD_2026_Neuro3D_VisualReview.pdf)** · **[Demonstration video (MP4)](submission/PLATEAU_AWARD_2026_Neuro3D.mp4)** · **[Japanese application text](submission/application_text_ja.md)**
+**[▶ Open the live 3D viewer](https://agnuxo1.github.io/neuro3d-plateau-irradiance/)** · **[Presentation PDF](submission/PLATEAU_AWARD_2026_Neuro3D_VisualReview.pdf)** · **[Demonstration video (MP4)](submission/PLATEAU_AWARD_2026_Neuro3D.mp4)** · **[Japanese application text — updated](submission/PLATEAU_APPLICATION_FINAL_JA.md)**
 
 ![Computed annual irradiance on the Hiroshima LOD2 district](docs/images/hero_irradiance.png)
 
@@ -101,7 +101,7 @@ The complete acquisition / mesh conversion / normal-preprocessing commands are i
 
 - [Visual Japanese PDF (new edition)](submission/PLATEAU_AWARD_2026_Neuro3D_VisualReview.pdf)
 - [Video demonstration](submission/PLATEAU_AWARD_2026_Neuro3D.mp4)
-- [Japanese application text](submission/application_text_ja.md)
+- [Japanese application text — updated](submission/PLATEAU_APPLICATION_FINAL_JA.md)
 - [Interactive project viewer](https://agnuxo1.github.io/neuro3d-plateau-irradiance/)
 
 **Application status:** materials prepared; **no official submission is claimed without an organiser receipt.** General Division deadline: **19 November 2026, 23:59 JST**.
