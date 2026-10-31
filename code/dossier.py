@@ -95,6 +95,7 @@ def build(a):
     tmp = tempfile.mkdtemp()
     qr_repo = qr_png(REPO, tmp, "repo")
     qr_view = qr_png(VIEWER, tmp, "viewer")
+    qr_method = qr_png(REPO + "/blob/main/docs/gifs/method.gif", tmp, "method")
 
     with PdfPages(a.out) as pdf:
         # 1 cover ---------------------------------------------------------
@@ -150,6 +151,7 @@ def build(a):
             "前面バッファ（光を向いた面）が重なり合う立体に埋もれた面を見つけます。"
             "面の向きで分けるので、自己遮蔽が起きません。", 15),
             color=DIM, fontsize=12.5, va="top", linespacing=1.9)
+        put_qr(fig, qr_method, .865, .77, .07, "アニメ GIF")
         pdf.savefig(fig); plt.close(fig)
 
         # 4 agreement -------------------------------------------------------
