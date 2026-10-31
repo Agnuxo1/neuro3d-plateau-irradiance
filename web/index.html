@@ -302,6 +302,12 @@ async function load(){
 }
 
 function tick(){ controls.update(); renderer.render(scene, camera); requestAnimationFrame(tick); }
+
+// Handle for automated screen capture and debugging: the camera, the controls
+// and the loaded state, so a script can drive the real viewer instead of a
+// mock-up. It reads and renders; it changes no data.
+window.__viewer = {THREE, scene, camera, controls, renderer, state,
+                   render: () => renderer.render(scene, camera)};
 load().then(tick).catch(e => {
   document.getElementById('loading').textContent = '読み込みに失敗しました: ' + e.message;
 });

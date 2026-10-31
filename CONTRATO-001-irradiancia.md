@@ -112,3 +112,27 @@ comparación de coste no mezcle «coste amortizado en todo el distrito» con
 
 Estas tres cosas hacen la comparación más exigente para la tecnología propia, no
 menos. Lo que salga se publica igual.
+
+---
+
+## ADENDA II — 2026-10-31: cuatro medidas posteriores al contrato
+
+El contrato quedó cerrado y medido antes de esta adenda. Lo que sigue **no modifica el veredicto
+registrado** (H1 no se cumple sobre las 900 sondas: R² 0,884, sesgo +11,9 %, p95 57.265 %), que se
+publica tal cual en el README y en el PDF de la solicitud. Se añaden cuatro medidas que el
+contrato no cubría, cada una con una pregunta propia, y se declaran **posteriores al contrato**:
+
+1. **P1 — escalado.** El coste de una dirección frente al número de oclusores, con las caras
+   consultadas fijas. Resultado: pendiente log-log 0,943. Obligó a corregir la redacción de una
+   afirmación publicada; la corrección está en el README, el PDF, el vídeo y el texto de solicitud.
+2. **P2 y P2b — convergencia numérica.** Barridos de un parámetro y configuración más fina
+   combinada. La configuración publicada difiere −0,13 % de la más fina a 1/6 del coste.
+3. **P3 — transferencia.** La comparación completa en 名古屋 52366700, un teselado elegido antes de
+   medir y nunca usado durante el ajuste, sin cambiar un parámetro: R² 0,986.
+4. **P4 — detección de caras selladas.** Un detector de encierro en 3D, con criterio fijado antes
+   de medir (5 de 7 direcciones) y validado con formas sintéticas en CI. Recalculado el contrato
+   con él, R² 0,989 sobre las 900 sondas. **Es una medida posterior: no sustituye la cifra
+   registrada.** El percentil 95 sigue sin cumplirse en las dos versiones.
+
+Ninguna de estas medidas relaja una condición registrada. Las dos que resultaron desfavorables
+(P1 y la primera versión de P4) se publican enteras.

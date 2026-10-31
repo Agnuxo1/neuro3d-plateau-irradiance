@@ -1,0 +1,236 @@
+{
+  "test": "P2 numerical convergence, one parameter at a time",
+  "fixed_queries": 1500,
+  "base_config": {
+    "texel_m": 0.5,
+    "samples_per_m2": 2.0,
+    "hour_step_h": 1.0
+  },
+  "sweeps": {
+    "texel_m": {
+      "values_finest_first": [
+        0.25,
+        0.5,
+        1.0,
+        2.0
+      ],
+      "runs": [
+        {
+          "config": {
+            "texel_m": 0.25,
+            "samples_per_m2": 2.0,
+            "hour_step_h": 1.0
+          },
+          "splat_points": 4489124,
+          "directions": 286,
+          "light_transport_seconds": 45.56,
+          "annual_kwh_mean": 754.5308227539062,
+          "annual_kwh_median": 620.7481689453125,
+          "svf_mean": 0.5895249843597412,
+          "mean_shift_vs_finest": 0.0,
+          "median_abs_deviation_vs_finest": 0.0,
+          "p95_abs_deviation_vs_finest": 0.0
+        },
+        {
+          "config": {
+            "texel_m": 0.5,
+            "samples_per_m2": 2.0,
+            "hour_step_h": 1.0
+          },
+          "splat_points": 4489124,
+          "directions": 286,
+          "light_transport_seconds": 39.509,
+          "annual_kwh_mean": 584.3522338867188,
+          "annual_kwh_median": 361.3514404296875,
+          "svf_mean": 0.4340605139732361,
+          "mean_shift_vs_finest": -0.2255422624698952,
+          "median_abs_deviation_vs_finest": 0.16469722986221313,
+          "p95_abs_deviation_vs_finest": 0.8426052331924438
+        },
+        {
+          "config": {
+            "texel_m": 1.0,
+            "samples_per_m2": 2.0,
+            "hour_step_h": 1.0
+          },
+          "splat_points": 4489124,
+          "directions": 286,
+          "light_transport_seconds": 38.655,
+          "annual_kwh_mean": 501.3190002441406,
+          "annual_kwh_median": 234.3432159423828,
+          "svf_mean": 0.3698437511920929,
+          "mean_shift_vs_finest": -0.33558844102032376,
+          "median_abs_deviation_vs_finest": 0.24837636947631836,
+          "p95_abs_deviation_vs_finest": 0.9974828362464905
+        },
+        {
+          "config": {
+            "texel_m": 2.0,
+            "samples_per_m2": 2.0,
+            "hour_step_h": 1.0
+          },
+          "splat_points": 4489124,
+          "directions": 286,
+          "light_transport_seconds": 36.979,
+          "annual_kwh_mean": 444.2796630859375,
+          "annual_kwh_median": 191.11898803710938,
+          "svf_mean": 0.32563140988349915,
+          "mean_shift_vs_finest": -0.4111842091958629,
+          "median_abs_deviation_vs_finest": 0.3614882230758667,
+          "p95_abs_deviation_vs_finest": 1.0
+        }
+      ],
+      "base_vs_finest_mean_shift": -0.2255422624698952
+    },
+    "samples_per_m2": {
+      "values_finest_first": [
+        8.0,
+        4.0,
+        2.0,
+        0.5
+      ],
+      "runs": [
+        {
+          "config": {
+            "texel_m": 0.5,
+            "samples_per_m2": 8.0,
+            "hour_step_h": 1.0
+          },
+          "splat_points": 17949122,
+          "directions": 286,
+          "light_transport_seconds": 150.649,
+          "annual_kwh_mean": 506.65283203125,
+          "annual_kwh_median": 232.32611083984375,
+          "svf_mean": 0.3757054805755615,
+          "mean_shift_vs_finest": 0.0,
+          "median_abs_deviation_vs_finest": 0.0,
+          "p95_abs_deviation_vs_finest": 0.0
+        },
+        {
+          "config": {
+            "texel_m": 0.5,
+            "samples_per_m2": 4.0,
+            "hour_step_h": 1.0
+          },
+          "splat_points": 8975689,
+          "directions": 286,
+          "light_transport_seconds": 78.673,
+          "annual_kwh_mean": 531.317626953125,
+          "annual_kwh_median": 276.1083984375,
+          "svf_mean": 0.39427319169044495,
+          "mean_shift_vs_finest": 0.04868184556077581,
+          "median_abs_deviation_vs_finest": 0.01392730325460434,
+          "p95_abs_deviation_vs_finest": 3.8948493003845215
+        },
+        {
+          "config": {
+            "texel_m": 0.5,
+            "samples_per_m2": 2.0,
+            "hour_step_h": 1.0
+          },
+          "splat_points": 4489124,
+          "directions": 286,
+          "light_transport_seconds": 39.472,
+          "annual_kwh_mean": 584.3522338867188,
+          "annual_kwh_median": 361.3514404296875,
+          "svf_mean": 0.4340605139732361,
+          "mean_shift_vs_finest": 0.1533582700879412,
+          "median_abs_deviation_vs_finest": 0.06458567082881927,
+          "p95_abs_deviation_vs_finest": 25.85531234741211
+        },
+        {
+          "config": {
+            "texel_m": 0.5,
+            "samples_per_m2": 0.5,
+            "hour_step_h": 1.0
+          },
+          "splat_points": 1126154,
+          "directions": 286,
+          "light_transport_seconds": 8.574,
+          "annual_kwh_mean": 755.46484375,
+          "annual_kwh_median": 632.6085205078125,
+          "svf_mean": 0.5896735191345215,
+          "mean_shift_vs_finest": 0.49108974822310564,
+          "median_abs_deviation_vs_finest": 0.29664063453674316,
+          "p95_abs_deviation_vs_finest": 118.69242858886719
+        }
+      ],
+      "base_vs_finest_mean_shift": 0.1533582700879412
+    },
+    "hour_step_h": {
+      "values_finest_first": [
+        0.25,
+        0.5,
+        1.0,
+        2.0
+      ],
+      "runs": [
+        {
+          "config": {
+            "texel_m": 0.5,
+            "samples_per_m2": 2.0,
+            "hour_step_h": 0.25
+          },
+          "splat_points": 4489124,
+          "directions": 711,
+          "light_transport_seconds": 98.081,
+          "annual_kwh_mean": 584.4580078125,
+          "annual_kwh_median": 367.38055419921875,
+          "svf_mean": 0.4340605139732361,
+          "mean_shift_vs_finest": 0.0,
+          "median_abs_deviation_vs_finest": 0.0,
+          "p95_abs_deviation_vs_finest": 0.0
+        },
+        {
+          "config": {
+            "texel_m": 0.5,
+            "samples_per_m2": 2.0,
+            "hour_step_h": 0.5
+          },
+          "splat_points": 4489124,
+          "directions": 429,
+          "light_transport_seconds": 59.419,
+          "annual_kwh_mean": 584.0536499023438,
+          "annual_kwh_median": 364.0329284667969,
+          "svf_mean": 0.4340605139732361,
+          "mean_shift_vs_finest": -0.00069185109067061,
+          "median_abs_deviation_vs_finest": 0.006915119476616383,
+          "p95_abs_deviation_vs_finest": 0.14981301128864288
+        },
+        {
+          "config": {
+            "texel_m": 0.5,
+            "samples_per_m2": 2.0,
+            "hour_step_h": 1.0
+          },
+          "splat_points": 4489124,
+          "directions": 286,
+          "light_transport_seconds": 39.694,
+          "annual_kwh_mean": 584.3522338867188,
+          "annual_kwh_median": 361.3514404296875,
+          "svf_mean": 0.4340605139732361,
+          "mean_shift_vs_finest": -0.0001809778022841007,
+          "median_abs_deviation_vs_finest": 0.012304043397307396,
+          "p95_abs_deviation_vs_finest": 0.23234082758426666
+        },
+        {
+          "config": {
+            "texel_m": 0.5,
+            "samples_per_m2": 2.0,
+            "hour_step_h": 2.0
+          },
+          "splat_points": 4489124,
+          "directions": 217,
+          "light_transport_seconds": 29.827,
+          "annual_kwh_mean": 585.4601440429688,
+          "annual_kwh_median": 364.62359619140625,
+          "svf_mean": 0.4340605139732361,
+          "mean_shift_vs_finest": 0.0017146419709767162,
+          "median_abs_deviation_vs_finest": 0.026612238958477974,
+          "p95_abs_deviation_vs_finest": 0.41025489568710327
+        }
+      ],
+      "base_vs_finest_mean_shift": -0.0001809778022841007
+    }
+  }
+}

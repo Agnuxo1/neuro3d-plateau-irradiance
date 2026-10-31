@@ -72,3 +72,37 @@ sondas restantes el acuerdo es R² 0,985 con 2,6 % de error mediano.
 - Se declara que «registrado antes de medir» es autodeclarado y que las
   iteraciones E02–E08 ajustaron el motor contra el mismo control y distrito, sin
   conjunto de validación independiente.
+
+---
+
+## Tercera ronda, 2026-10-31: cuatro medidas posteriores al contrato
+
+El contrato CONTRATO-001 estaba cerrado y medido. Estas cuatro pruebas responden a preguntas
+distintas que el contrato no cubría, y **ninguna de ellas cambia el veredicto registrado**: se
+publican como adenda etiquetada. Todas se reproducen con
+`python code/run_tests.py --outdir pruebas --device cpu` en el carril CPU de server-ia
+(trabajos `089e8faed8ea45c7` y `604bb6aab0e34af1`, 16 núcleos, Python 3.13, NumPy 2.5,
+PyTorch 2.14 CPU, Blender 4.5.9).
+
+| id | pregunta | diseño | resultado | decisión |
+|---|---|---|---|---|
+| P1 | ¿El coste de una dirección depende del número de oclusores? | Caras consultadas fijas (2.000), escena del 5 % al 100 % de los edificios, 193 direcciones, dos repeticiones y mínimo | Oclusores ×29,0 → tiempo ×23,9, **pendiente log-log 0,943** | **La afirmación anterior era incorrecta.** Se reescribe en README, PDF, vídeo y texto de solicitud: lo independiente del número de oclusores es la consulta por superficie, no la escritura de la escena |
+| P2 | ¿Está convergida la discretización? | Barrido de un parámetro cada vez: téxel 0,25–2 m, 0,5–8 puntos/m², paso solar 0,25–2 h, sobre 1.500 caras fijas | Téxel −22,6 %, puntos/m² +15,3 %, paso solar −0,02 % respecto al valor más fino de cada barrido | Parecía indicar falta de convergencia; motiva P2b |
+| P2b | ¿Y si se afinan a la vez? | Configuración publicada (0,5 m, 2 pts/m², 1 h) frente a la más fina combinada (0,25 m, 8 pts/m², 0,5 h), mismas caras | **−0,13 %** de diferencia en la media, 2,4 % de mediana por cara, coste ×6,0 | **Convergencia confirmada.** Lo que gobierna la oclusión es `puntos/m² × téxel²`, igual (0,5) en las dos configuraciones; los barridos de un parámetro rompen esa razón |
+| P3 | ¿Funciona en una ciudad que no se usó para ajustar? | 名古屋 52366700, elegido antes de medir por regla fija (otra ciudad, 2022, v3, con LOD2, el mayor), sin tocar un parámetro; mismo control Cycles, mismas 900 sondas | **R² 0,986**, sesgo +5,9 %, mediana 5,7 %, p95 2.103 %, C1 2,14 × 10⁻⁶, 22,6× a igual carga | **Validación externa superada** en R², sesgo y mediana; el p95 sigue sin cumplirse |
+| P4a | ¿Son las 128 sondas en desacuerdo caras selladas? | Prueba de encierro en 3D (6 ejes + normal, 5/7) **solo contra edificios vecinos** | 1.924 caras, las mismas que el criterio vertical; recall 0,00 sobre las 128; R² 0,883 | **Rechazada.** No recupera ninguna: el volumen que las encierra no es el de un vecino |
+| P4b | ¿Y si el propio edificio cuenta? | La misma prueba incluyendo los triángulos del propio edificio (un edificio CityGML lleva LOD2 y `lod1Solid` a la vez, así que una cara puede quedar dentro de su propio volumen) | Detección 1.924 → **6.008** caras; sobre las 128 sondas oscuras precisión 0,95, recall 0,63; todas las 900: **R² 0,989**, sesgo +4,2 %, mediana 2,5 %, p95 2.160 % | **Aceptada como adenda.** Explica 81 de las 128; 47 siguen sin explicación |
+
+### Lectura
+
+- La ventaja de coste no viene de una oclusión sublineal, sino de **amortizar una pasada entre
+  todas las superficies**: el coste por superficie y dirección es una sola lectura.
+- El método **transfiere** a geometría que no vio durante el ajuste, que era el hueco señalado en
+  la segunda ronda.
+- El criterio de aceptación que sigue sin cumplirse en las dos ciudades y en las dos versiones del
+  detector es el **percentil 95 del error relativo**, y la razón es metodológica: cuando el control
+  devuelve una fracción de kWh, cualquier diferencia es un porcentaje enorme. El contrato se
+  registró así y no se reescribe a posteriori.
+- `code/selftest_sealed.py` fija el comportamiento de los dos detectores con formas sintéticas de
+  respuesta conocida, incluidos los dos casos que motivaron el cambio (caja dentro de una caja sin
+  techo, y caja dentro del volumen del propio edificio). Se ejecuta en CI.
