@@ -1,5 +1,22 @@
 # 応募に添付するファイル / Qué se presenta
 
+> ## ⚠ 送ってはいけない PDF があります
+>
+> **`PLATEAU_AWARD_2026_Neuro3D_VisualReview.pdf` は、現状のまま応募に使わないでください。**
+> 測定によって撤回した記述が 2 か所そのまま残っているためです。
+>
+> | ページ | 残っている記述 | 測定した事実 |
+> |---|---|---|
+> | p.3 | 「遮蔽物の数に依存しません。」 | 両対数の傾き **0.943**（ほぼ線形）。依存しないのは 1 面あたりの問い合わせだけ — `pruebas/P1_scaling.json` |
+> | p.8 | 128 面の原因は「**特定済み**」 | 確認できたのは **81 / 128 面**（適合率 0.95）。**47 面は原因不明** — `pruebas/P4_detector.json` |
+>
+> この 2 文を載せたまま提出すると、**測定していないことを審査員に主張する**ことになります。
+> 同じ作品の別ビルドなので、現行の `code/dossier.py` で生成し直せば直ります。
+> 悪意ではなく、4 つの測定を行う前に作られたビルドだという、ただの時系列の問題です。
+>
+> **No enviéis ese PDF mientras contenga esas dos frases.** Son afirmaciones que nuestras
+> propias medidas desmienten; se arreglan regenerándolo con el `code/dossier.py` actual.
+
 このフォルダには、同じ作品について作られた **2 組**の資料があります。応募フォーム
 （https://form.run/@plateauaward2026-apply ）に添付できるのは **PDF 1 つと動画 1 つ**だけです。
 
@@ -56,8 +73,16 @@ B の PDF は、**このセッションで 4 つの測定を行う前の版**で
 | p.3 | 「遮蔽物の数に依存しません。」 | **否定された。** P1 の両対数の傾きは 0.943 で、ほぼ線形（`pruebas/P1_scaling.json`）。依存しないのは 1 面あたりの問い合わせのみ |
 | p.8 | 「原因は 900 面のうち 128 面が…封じられた面であることに**特定済み**で」 | **128 面すべてについては裏づけがない。** 3 次元検出器が確認できたのは 81 面（適合率 0.95）、残る 47 面は原因不明（`pruebas/P4_detector.json`） |
 
-B の本文 `PLATEAU_APPLICATION_FINAL_JA.md` にも 1 か所、現物と合わない記述があります：
-動画を「84 秒」と書いていますが、`main` にある動画は **1 分 46 秒**です。
+### 動画の長さの食い違い
+
+B の本文 `PLATEAU_APPLICATION_FINAL_JA.md` は動画を「**84 秒**」と書いていますが、`main` に
+置いてある `PLATEAU_AWARD_2026_Neuro3D.mp4` は **1 分 46 秒（106 秒）** です。84 秒だったのは
+10 月 30 日版の動画で、現物は差し替わっています。
+
+**フォームや資料に長さを書く場合は、必ず実測値の 1 分 46 秒を書いてください。**
+どちらも 3 分の上限内なので応募要項には違反しませんが、提出物の記述が現物と一致しない
+のは避けます。確認方法：ブラウザで再生するか、`video2/timeline2.json`（2,544 フレーム ÷
+24 fps = 106.0 秒）を見てください。
 
 B の本文自体に撤回すべき主張はありません。「封じられた面が主因**と考えられます**」という
 仮説の書き方で、これは P4 が 81 面について裏づけました。ただし
@@ -84,9 +109,11 @@ En `submission/` hay dos PDF y dos textos para el mismo concurso. **Solo se adju
   diez apartados que pide la convocatoria, incluye las cuatro medidas nuevas y la transferencia a
   Nagoya, y no contiene ninguna afirmación desmentida.
 - **B** (`..._VisualReview.pdf` + `PLATEAU_APPLICATION_FINAL_JA.md`) es una versión anterior del
-  mismo generador. No incumple las bases, pero **repite dos frases que nuestras propias medidas
-  desmintieron** (el coste por dirección y la causa de las 128 caras) y dice que el vídeo dura
-  84 segundos cuando dura 1:46.
+  mismo generador. **Ese PDF no debe enviarse mientras contenga las dos frases de la cabecera**:
+  no porque sea peor, sino porque afirmaría ante el jurado dos cosas que nuestras propias
+  medidas desmienten (pendiente 0,943 frente a «no depende de los oclusores», y 81 de 128 caras
+  explicadas frente a «causa identificada»). Se arregla regenerándolo con el `code/dossier.py`
+  actual. Su texto además dice que el vídeo dura 84 s cuando dura 1:46.
 - **La revisión independiente que acompaña a B sí aporta** (intervalo de confianza del R²) y se
   queda donde está.
 
