@@ -8,10 +8,7 @@
 [**Japanese narration script**](PLATEAU_AWARD_2026_Neuro3D_106s_Script_JA.md) ·
 [**Audio/video validation**](PLATEAU_AWARD_2026_Neuro3D_106s_QA.json)
 
-This is an *additive narrated cut* for outreach and YouTube. The original
-[106-second silent video](../../submission/PLATEAU_AWARD_2026_Neuro3D.mp4),
-all original numerical results, experiment inputs and official submission
-assets remain untouched.
+The existing [competition-video link](../../submission/PLATEAU_AWARD_2026_Neuro3D.mp4) now plays with Japanese narration. The [byte-identical original silent video](PLATEAU_AWARD_2026_Neuro3D_106s_SilentOriginal.mp4) is archived here. Both versions contain exactly the same H.264 frames and scientific results. The public GitHub video was updated after the official form was submitted; no second application was sent.
 
 ## Verified production properties
 

@@ -1,5 +1,7 @@
 # 応募書類 / Submission files
 
+**Video audio update (31 October 2026):** [PLATEAU_AWARD_2026_Neuro3D.mp4](PLATEAU_AWARD_2026_Neuro3D.mp4) now has a natural Japanese narration. Duration 106 seconds; scientific footage and numerical results are unchanged. The [original silent MP4](../docs/narration/PLATEAU_AWARD_2026_Neuro3D_106s_SilentOriginal.mp4) is archived byte-for-byte. This GitHub update does not represent a second official contest submission.
+
 ⚠ **`PLATEAU_AWARD_2026_Neuro3D_VisualReview.pdf` は現状のまま応募に使わないでください**
 （測定で撤回した記述が 2 か所残っています。理由と直し方は下のリンク先）。
 
