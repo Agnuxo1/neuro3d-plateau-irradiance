@@ -1,0 +1,96 @@
+{
+  "status": "PASSED",
+  "source": "submission/PLATEAU_AWARD_2026_Neuro3D.mp4",
+  "narrated": "docs/narration/PLATEAU_AWARD_2026_Neuro3D_106s_Narrated_JA.mp4",
+  "source_bytes": 17669141,
+  "narrated_bytes": 19441055,
+  "video_stream_unchanged": true,
+  "original_h264_sha256": "9bdf995e9e3fcb553e15f1db26b0188f212e9d609107e3b1008646fe08105a30",
+  "narrated_h264_sha256": "9bdf995e9e3fcb553e15f1db26b0188f212e9d609107e3b1008646fe08105a30",
+  "video_properties": {
+    "width": 1280,
+    "height": 720,
+    "fps": 24.0,
+    "frames": 2544
+  },
+  "video_duration_s": 106.0,
+  "audio_duration_s": 106.005,
+  "audio_peak": 0.6082,
+  "audio_rms": 0.1037,
+  "voice_activity_one_second_samples": [
+    {
+      "second": 1,
+      "rms": 0.1453
+    },
+    {
+      "second": 7,
+      "rms": 0.1108
+    },
+    {
+      "second": 11,
+      "rms": 0.1337
+    },
+    {
+      "second": 17,
+      "rms": 0.1442
+    },
+    {
+      "second": 23,
+      "rms": 0.0815
+    },
+    {
+      "second": 29,
+      "rms": 0.1038
+    },
+    {
+      "second": 33,
+      "rms": 0.123
+    },
+    {
+      "second": 39,
+      "rms": 0.1268
+    },
+    {
+      "second": 46,
+      "rms": 0.143
+    },
+    {
+      "second": 52,
+      "rms": 0.1204
+    },
+    {
+      "second": 58,
+      "rms": 0.1214
+    },
+    {
+      "second": 64,
+      "rms": 0.126
+    },
+    {
+      "second": 70,
+      "rms": 0.147
+    },
+    {
+      "second": 77,
+      "rms": 0.1366
+    },
+    {
+      "second": 83,
+      "rms": 0.1454
+    },
+    {
+      "second": 89,
+      "rms": 0.1325
+    },
+    {
+      "second": 96,
+      "rms": 0.1127
+    },
+    {
+      "second": 103,
+      "rms": 0.0806
+    }
+  ],
+  "subtitles": 18,
+  "full_decode": "PASS"
+}
