@@ -1,0 +1,82 @@
+{
+  "audit": "Independent analytical checks, 2026-10-31",
+  "scope": "CPU-only post-hoc audit on previously generated results",
+  "inputs": {
+    "..\\results_v2\\neuro3d.npz": "2271c61433070e6c79e8e12b0b3fe27f22ad1b9abcfa02685624547db1314f61",
+    "..\\results_v2\\CONTRATO-001.json.pairs.npz": "97914cade2a2b08a047f60c151a52e3425354bcefa0198f22097302de4f0a878"
+  },
+  "tests": [
+    {
+      "name": "A: Physical consistency on district triangles",
+      "n_total_triangles": 46862,
+      "n_kept_triangles": 44902,
+      "n_finite_positive_area_triangles": 44902,
+      "violations": {
+        "nonfinite_kept": 0,
+        "nonpositive_area_kept": 0,
+        "negative_direct_kept": 0,
+        "negative_diffuse_kept": 0,
+        "svf_outside_unit_kept": 0,
+        "irradiance_exceeds_unshaded_kept": 0
+      },
+      "pass": true,
+      "notes": "The comparison is internal to the clear-sky model. It does not establish agreement with measured weather."
+    },
+    {
+      "name": "B: Tessellation-weighting sensitivity",
+      "n": 44902,
+      "computed_surface_area_m2": 2137919.0651685884,
+      "annual_irradiance_triangle_mean_kwh_m2": 601.601632498796,
+      "annual_irradiance_area_weighted_mean_kwh_m2": 550.24324894073,
+      "annual_irradiance_area_weighted_median_kwh_m2": 292.6938419342041,
+      "sky_view_triangle_mean": 0.4424683450914337,
+      "sky_view_area_weighted_mean": 0.4407811358326352,
+      "positive_irradiance_area_fraction": 0.8382861007640732,
+      "interpretation": "Sensitivity check only: a change reflects uneven triangle areas, not a change in the engine's predictions.",
+      "mean_weighting_shift_fraction": -0.08536942186267882
+    },
+    {
+      "name": "C: Stratified bootstrap on original 900 Cycles probes",
+      "seed": 20261031,
+      "replicates": 1000,
+      "probes": 900,
+      "strata_sizes": {
+        "1": 300,
+        "2": 300,
+        "3": 300
+      },
+      "observed": {
+        "n": 900,
+        "r2": 0.8838798804306817,
+        "mean_bias_fraction": 0.11921749436073509,
+        "median_absolute_error_kwh_m2_year": 23.43575190246354,
+        "median_relative_error": 0.04751213844792336,
+        "p95_relative_error": 572.6501770019523
+      },
+      "ci95_percentile": {
+        "r2": [
+          0.8463936703268767,
+          0.9124035461460558
+        ],
+        "mean_bias_fraction": [
+          0.0969719435574043,
+          0.1462327168335982
+        ],
+        "median_absolute_error_kwh_m2_year": [
+          20.223650580617175,
+          27.3833994849212
+        ],
+        "median_relative_error": [
+          0.03294604199670548,
+          0.06306018843378235
+        ],
+        "p95_relative_error": [
+          274.8556001480574,
+          826.6674194335938
+        ]
+      },
+      "notes": "This estimates sample variability conditional on the existing stratified probes; it does NOT repair spatial dependence, systematic model bias or missing independent-city validation. The registered all-probes H1 verdict remains unchanged."
+    }
+  ],
+  "preregistered_H1_verdict": "NOT MET on all 900 probes; this script does not alter the pre-registered protocol."
+}
