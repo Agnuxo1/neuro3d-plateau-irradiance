@@ -109,7 +109,7 @@ def main() -> None:
             title="通らなかった条件も載せる",
             lines=[f"▸ 事前条件は全 900 面で判定：R² "
                    f"{res['H1_all_probes_preregistered']['r2']:.3f} で不合格",
-                   f"{900 - res['probes_compared']} 面が重なった立体に封じられ、"
+                   f"{900 - res['probes_compared']} 面は封じられた面で、"
                    "本エンジンだけが光を返す",
                    f"対照の校正誤差 {ctl['calibration_rel_error']:.1e}（解析解と一致）"],
             figure=os.path.join(a.figs, "fig2_error.png"))),

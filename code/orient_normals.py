@@ -120,10 +120,84 @@ def buried_faces(tri: np.ndarray, n: np.ndarray, bldg: np.ndarray,
     return buried
 
 
+# Seven fixed probe directions for the enclosure test: the three coordinate
+# axes in both senses plus the face's own outward normal. A point strictly
+# inside a closed solid has odd ray parity along *every* direction, and a point
+# outside has even parity along every direction, so the parity vote is a
+# criterion and not a tuned threshold. Real CityGML solids are not always
+# watertight, which flips the parity along the few directions that graze a
+# crack, hence the majority instead of unanimity. The criterion below (at least
+# five of the seven) was fixed before it was measured.
+ENCLOSURE_DIRS = np.array([
+    [1.0, 0.0, 0.0], [-1.0, 0.0, 0.0],
+    [0.0, 1.0, 0.0], [0.0, -1.0, 0.0],
+    [0.0, 0.0, 1.0], [0.0, 0.0, -1.0],
+], float)
+ENCLOSURE_VOTES = 5
+
+
+def _parity_chunked(orig, dirs, sub, budget=12_000_000):
+    """Odd/even forward-crossing parity, chunked to bound peak memory.
+
+    No triangle is excluded, not even the face's own: the query point sits
+    `offset` metres along the normal, so a ray aimed back through its own face
+    really does cross it, and dropping that crossing would break the parity.
+    """
+    out = np.zeros(len(orig), bool)
+    step = max(1, int(budget // max(1, len(sub))))
+    for i in range(0, len(orig), step):
+        o, d = orig[i:i + step], dirs[i:i + step]
+        skip = np.zeros((len(o), len(sub)), bool)
+        out[i:i + step] = (ray_triangle_count(o, d, sub, skip) % 2) == 1
+    return out
+
+
+def sealed_faces_3d(tri: np.ndarray, n: np.ndarray, bldg: np.ndarray,
+                    offset: float = 0.30, radius: float = 60.0,
+                    votes: int = ENCLOSURE_VOTES):
+    """Faces whose outward side lies inside another building's solid.
+
+    Same question as `buried_faces`, answered with a three-dimensional
+    enclosure test instead of a vertical one. `buried_faces` asks for odd
+    parity upwards *and* downwards, which misses a surface sealed inside a
+    volume whose roof or floor is not watertight; here the parity is taken
+    along six axis directions plus the face normal, and a majority decides.
+    """
+    c = tri.mean(axis=1) + n * offset
+    ids = np.unique(bldg)
+    boxes = {}
+    for b in ids:
+        m = bldg == b
+        v = tri[m].reshape(-1, 3)
+        boxes[b] = (v.min(0), v.max(0), np.nonzero(m)[0])
+    centres = np.array([(boxes[b][0] + boxes[b][1]) / 2 for b in ids])
+    sealed = np.zeros(len(tri), bool)
+    for b in ids:
+        lo, hi, faces = boxes[b]
+        near = ids[(np.abs(centres[:, 0] - (lo[0] + hi[0]) / 2) < radius)
+                   & (np.abs(centres[:, 1] - (lo[1] + hi[1]) / 2) < radius)
+                   & (ids != b)]
+        idx = (np.concatenate([faces] + [boxes[o][2] for o in near])
+               if len(near) else faces)
+        sub = tri[idx]
+        q = c[faces]
+        odd = np.zeros(len(q), np.int16)
+        for d in ENCLOSURE_DIRS:
+            odd += _parity_chunked(q, np.tile(d, (len(q), 1)), sub)
+        odd += _parity_chunked(q, n[faces], sub)
+        sealed[faces] = odd >= votes
+    return sealed
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--tile", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--enclosure", default="vertical",
+                    choices=["vertical", "majority3d", "none"],
+                    help="which sealed-face criterion fills `buried`; "
+                         "`vertical` reproduces the published measurement")
+    ap.add_argument("--votes", type=int, default=ENCLOSURE_VOTES)
     a = ap.parse_args()
 
     d = np.load(a.tile)
@@ -132,14 +206,27 @@ def main() -> None:
     _, n, _ = triangle_frames(tri)
     n, flipped, big = orient_outward_parity(tri, n, d["tri_sem"], d["tri_bldg"])
     t1 = time.time()
-    buried = buried_faces(tri, n, d["tri_bldg"])
+    vertical = buried_faces(tri, n, d["tri_bldg"])
+    t2 = time.time()
+    # The three-dimensional test costs about three times the vertical one, so
+    # it only runs when it is the criterion being asked for.
+    if a.enclosure == "majority3d":
+        sealed = sealed_faces_3d(tri, n, d["tri_bldg"], votes=a.votes)
+    else:
+        sealed = np.zeros(len(tri), bool)
+    buried = vertical | sealed if a.enclosure == "majority3d" else vertical
     np.savez_compressed(a.out, normals=n.astype(np.float32),
                         buried=buried,
+                        buried_vertical=vertical,
+                        sealed_majority3d=sealed,
+                        enclosure=np.array(a.enclosure),
                         fallback_buildings=np.int32(big),
                         flipped_faces=np.int32(flipped))
     print(f"normals={len(n)} flipped={flipped} buildings_skipped={big} "
-          f"buried={int(buried.sum())} ({time.time()-t0:.1f} s, "
-          f"buried test {time.time()-t1:.1f} s)")
+          f"vertical={int(vertical.sum())} majority3d={int(sealed.sum())} "
+          f"union={int((vertical | sealed).sum())} used={int(buried.sum())} "
+          f"({time.time()-t0:.1f} s; vertical test {t2-t1:.1f} s, "
+          f"3d test {time.time()-t2:.1f} s)")
 
 
 if __name__ == "__main__":

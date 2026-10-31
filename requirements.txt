@@ -7,4 +7,6 @@ numpy>=2.2,<3
 torch>=2.6,<3
 shapely>=2.1,<3     # preprocessing only (orient_normals.py)
 lxml>=6,<7          # CityGML parsing only (citygml_mesh.py)
-matplotlib>=3.10,<4 # figures and slides only
+matplotlib>=3.10,<4 # figures, slides and animations only
+pillow>=10,<12        # animated GIFs and the video frames only
+segno>=1.6,<2         # QR codes on the application PDF only
