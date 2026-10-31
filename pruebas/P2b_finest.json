@@ -1,0 +1,32 @@
+{
+  "test": "P2b combined finest configuration",
+  "queries": 1500,
+  "base": {
+    "config": {
+      "texel": 0.5,
+      "spm2": 2.0,
+      "hstep": 1.0
+    },
+    "mean_kwh": 584.3522338867188,
+    "median_kwh": 361.3514404296875,
+    "seconds": 39.653,
+    "splat_points": 4489124,
+    "directions": 286
+  },
+  "finest": {
+    "config": {
+      "texel": 0.25,
+      "spm2": 8.0,
+      "hstep": 0.5
+    },
+    "mean_kwh": 585.115234375,
+    "median_kwh": 375.84332275390625,
+    "seconds": 238.841,
+    "splat_points": 17949122,
+    "directions": 429
+  },
+  "mean_shift_base_vs_finest": -0.0013040174962952733,
+  "median_abs_deviation": 0.024124331772327423,
+  "p95_abs_deviation": 0.6276543140411377,
+  "cost_ratio_finest_over_base": 6.023276927344716
+}

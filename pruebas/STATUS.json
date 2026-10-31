@@ -1,0 +1,66 @@
+{
+  "p1": {
+    "ok": true,
+    "seconds": 110.4,
+    "steps": [
+      {
+        "cmd": "+ /home/ai/venvs/training/bin/python test_scaling.py --tile tile_51324376.npz --normals normals_51324376.npz --device cpu --lat 34.39298186 --lon 132.46132208 --workdir pruebas/scaling_runs --out /home/ai/servidor-ia/jobs/089e8faed8ea45c7/work/code/pruebas/P1_scaling.json",
+        "exit": 0,
+        "seconds": 110.4
+      }
+    ]
+  },
+  "p2": {
+    "ok": true,
+    "seconds": 691.0,
+    "steps": [
+      {
+        "cmd": "+ /home/ai/venvs/training/bin/python test_convergence.py --tile tile_51324376.npz --normals normals_51324376.npz --device cpu --lat 34.39298186 --lon 132.46132208 --workdir pruebas/convergence_runs --out /home/ai/servidor-ia/jobs/089e8faed8ea45c7/work/code/pruebas/P2_convergence.json",
+        "exit": 0,
+        "seconds": 691.0
+      }
+    ]
+  },
+  "p4": {
+    "ok": true,
+    "seconds": 136.0,
+    "steps": [
+      {
+        "cmd": "+ /home/ai/venvs/training/bin/python test_detector.py --tile tile_51324376.npz --control resultados/control_cycles.npz --probes resultados/probes.npz --device cpu --lat 34.39298186 --lon 132.46132208 --workdir pruebas/detector_runs --out /home/ai/servidor-ia/jobs/089e8faed8ea45c7/work/code/pruebas/P4_detector.json",
+        "exit": 0,
+        "seconds": 136.0
+      }
+    ]
+  },
+  "p3": {
+    "ok": true,
+    "seconds": 1727.3,
+    "steps": [
+      {
+        "cmd": "+ /home/ai/venvs/training/bin/python orient_normals.py --tile tile_52366700.npz --out pruebas/normals_nagoya.npz --enclosure vertical",
+        "exit": 0,
+        "seconds": 163.0
+      },
+      {
+        "cmd": "+ /home/ai/venvs/training/bin/python run_pilot.py --tile tile_52366700.npz --normals pruebas/normals_nagoya.npz --outdir pruebas/nagoya --lat 35.16686725 --lon 136.88672513 --device cpu --samples 512",
+        "exit": 0,
+        "seconds": 1344.1
+      },
+      {
+        "cmd": "+ /home/ai/venvs/training/bin/python orient_normals.py --tile tile_52366700.npz --out pruebas/normals_nagoya_m3d.npz --enclosure majority3d",
+        "exit": 0,
+        "seconds": 163.9
+      },
+      {
+        "cmd": "+ /home/ai/venvs/training/bin/python neuro3d_irradiance.py --tile tile_52366700.npz --out pruebas/nagoya_m3d.npz --normals pruebas/normals_nagoya_m3d.npz --device cpu --lat 35.16686725 --lon 136.88672513 --texel 0.5 --samples-per-m2 2.0",
+        "exit": 0,
+        "seconds": 56.1
+      },
+      {
+        "cmd": "+ /home/ai/venvs/training/bin/python compare.py --neuro3d pruebas/nagoya_m3d.npz --control pruebas/nagoya/control_cycles.npz --probes pruebas/nagoya/probes.npz --out pruebas/CONTRATO-001_nagoya_m3d.json",
+        "exit": 0,
+        "seconds": 0.1
+      }
+    ]
+  }
+}

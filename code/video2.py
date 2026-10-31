@@ -14,6 +14,7 @@ then
 from __future__ import annotations
 
 import argparse
+import glob
 import json
 import os
 
@@ -111,6 +112,7 @@ def main() -> None:
     ap.add_argument("--figs", required=True)
     ap.add_argument("--testfigs", required=True)
     ap.add_argument("--media", required=True)
+    ap.add_argument("--viewer", default="", help="directory of recorded viewer frames")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
 
@@ -155,8 +157,8 @@ def main() -> None:
         "考え方：描画として解く",
         ["▸ 光の方向ごとに 2 枚のデプスバッファ",
          "背面バッファ＝街区の影、前面バッファ＝埋もれた面。",
-         "1 方向のコストは散布書き込み 1 回＋参照 1 回。",
-         "遮蔽物の数に依存しません。"], title_size=40), 4, "method_card")
+         "1 面あたりの問い合わせは、遮蔽物が何棟あっても 1 回の参照。",
+         "その 1 パスを街区の全面で使い回します。"], title_size=40), 4, "method_card")
     if os.path.exists(M("method.gif")):
         tl.play(gif_frames(M("method.gif")), 6, "method")
 
@@ -233,17 +235,27 @@ def main() -> None:
         ["▸ agnuxo1.github.io/neuro3d-plateau-irradiance",
          "面にカーソルを合わせると年間日射量と天空率が読めます。",
          "インストール不要。スマートフォンでも動きます。"],
-        figure=M("hero_svf.png"), title_size=36), 5, "viewer")
+        figure=M("viewer_screenshot.jpg"), title_size=36), 4.5, "viewer")
 
-    tl.hold(card_image(
-        "観察事項と限界",
-        [f"▸ 事前登録した条件 H1 は全 900 面では通っていません"
-         f"（R² {hp['r2']:.3f}）",
-         f"原因は {res['probes_total'] - res['probes_compared']} 面の"
-         f"封じられた面に特定済み。",
-         "晴天モデルの計算値で、実測気象ではありません。",
-         "第三者による独立監査は未了です。"],
-        title_size=38, title_color=WARN), 6.5, "limits")
+    # The real viewer, recorded while it runs: the camera orbits, the display
+    # switches to the sky view factor and the wall class is filtered out, all
+    # through the page's own controls.
+    shots = sorted(glob.glob(os.path.join(a.viewer, "v*.png")))
+    if shots:
+        frames = [fit(Image.open(f).convert("RGB")) for f in shots]
+        tl.play(frames, 7.5, "viewer_live")
+
+    lim = [f"▸ 事前登録した条件 H1 は全 900 面では通っていません"
+           f"（登録時の構成で R² {hp['r2']:.3f}）"]
+    if p4:
+        af2 = p4["contract_with_better_detector"]["H1_all_probes_preregistered"]
+        q2 = p4["detection_quality_on_probes"]["majority3d_union"]
+        lim += [f"3 次元検出器では R² {af2['r2']:.3f} まで改善しますが契約後の測定で、",
+                f"95 パーセンタイルは {af2['p95_rel_error']*100:.0f} % のまま未達。"
+                f"残る {q2['fn']} 面は原因不明。"]
+    lim += ["晴天モデルの計算値で、実測気象ではありません。独立監査は未了です。"]
+    tl.hold(card_image("観察事項と限界", lim, title_size=38,
+                       title_color=WARN), 7.5, "limits")
 
     tl.hold(card_image(
         "すべて公開しています",

@@ -1,0 +1,192 @@
+{
+  "test": "P1 scaling: light-transport time versus occluder count, queried surfaces held fixed",
+  "fixed_queries": 2000,
+  "runs": [
+    {
+      "scene_bldg_frac": 0.05,
+      "repeat": 0,
+      "scene_buildings": 60,
+      "scene_triangles": 2161,
+      "splat_points": 154659,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 1.111,
+      "seconds_per_direction": 0.005756476683937824,
+      "wall_seconds_process": 2.46
+    },
+    {
+      "scene_bldg_frac": 0.05,
+      "repeat": 1,
+      "scene_buildings": 60,
+      "scene_triangles": 2161,
+      "splat_points": 154659,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 1.153,
+      "seconds_per_direction": 0.005974093264248705,
+      "wall_seconds_process": 2.5
+    },
+    {
+      "scene_bldg_frac": 0.1,
+      "repeat": 0,
+      "scene_buildings": 119,
+      "scene_triangles": 4728,
+      "splat_points": 344384,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 2.119,
+      "seconds_per_direction": 0.010979274611398965,
+      "wall_seconds_process": 3.49
+    },
+    {
+      "scene_bldg_frac": 0.1,
+      "repeat": 1,
+      "scene_buildings": 119,
+      "scene_triangles": 4728,
+      "splat_points": 344384,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 2.209,
+      "seconds_per_direction": 0.01144559585492228,
+      "wall_seconds_process": 3.58
+    },
+    {
+      "scene_bldg_frac": 0.25,
+      "repeat": 0,
+      "scene_buildings": 298,
+      "scene_triangles": 11875,
+      "splat_points": 935309,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 4.983,
+      "seconds_per_direction": 0.02581865284974093,
+      "wall_seconds_process": 6.45
+    },
+    {
+      "scene_bldg_frac": 0.25,
+      "repeat": 1,
+      "scene_buildings": 298,
+      "scene_triangles": 11875,
+      "splat_points": 935309,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 5.158,
+      "seconds_per_direction": 0.026725388601036272,
+      "wall_seconds_process": 6.62
+    },
+    {
+      "scene_bldg_frac": 0.5,
+      "repeat": 0,
+      "scene_buildings": 595,
+      "scene_triangles": 23136,
+      "splat_points": 2058887,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 12.275,
+      "seconds_per_direction": 0.06360103626943005,
+      "wall_seconds_process": 13.9
+    },
+    {
+      "scene_bldg_frac": 0.5,
+      "repeat": 1,
+      "scene_buildings": 595,
+      "scene_triangles": 23136,
+      "splat_points": 2058887,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 12.481,
+      "seconds_per_direction": 0.06466839378238341,
+      "wall_seconds_process": 14.11
+    },
+    {
+      "scene_bldg_frac": 1.0,
+      "repeat": 0,
+      "scene_buildings": 1190,
+      "scene_triangles": 46826,
+      "splat_points": 4489124,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 26.711,
+      "seconds_per_direction": 0.13839896373056995,
+      "wall_seconds_process": 28.69
+    },
+    {
+      "scene_bldg_frac": 1.0,
+      "repeat": 1,
+      "scene_buildings": 1190,
+      "scene_triangles": 46826,
+      "splat_points": 4489124,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 26.572,
+      "seconds_per_direction": 0.13767875647668393,
+      "wall_seconds_process": 28.55
+    }
+  ],
+  "curve": [
+    {
+      "scene_bldg_frac": 0.05,
+      "repeat": 0,
+      "scene_buildings": 60,
+      "scene_triangles": 2161,
+      "splat_points": 154659,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 1.111,
+      "seconds_per_direction": 0.005756476683937824,
+      "wall_seconds_process": 2.46
+    },
+    {
+      "scene_bldg_frac": 0.1,
+      "repeat": 0,
+      "scene_buildings": 119,
+      "scene_triangles": 4728,
+      "splat_points": 344384,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 2.119,
+      "seconds_per_direction": 0.010979274611398965,
+      "wall_seconds_process": 3.49
+    },
+    {
+      "scene_bldg_frac": 0.25,
+      "repeat": 0,
+      "scene_buildings": 298,
+      "scene_triangles": 11875,
+      "splat_points": 935309,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 4.983,
+      "seconds_per_direction": 0.02581865284974093,
+      "wall_seconds_process": 6.45
+    },
+    {
+      "scene_bldg_frac": 0.5,
+      "repeat": 0,
+      "scene_buildings": 595,
+      "scene_triangles": 23136,
+      "splat_points": 2058887,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 12.275,
+      "seconds_per_direction": 0.06360103626943005,
+      "wall_seconds_process": 13.9
+    },
+    {
+      "scene_bldg_frac": 1.0,
+      "repeat": 1,
+      "scene_buildings": 1190,
+      "scene_triangles": 46826,
+      "splat_points": 4489124,
+      "queries": 2000,
+      "directions": 193,
+      "light_transport_seconds": 26.572,
+      "seconds_per_direction": 0.13767875647668393,
+      "wall_seconds_process": 28.55
+    }
+  ],
+  "occluder_growth_5pc_to_100pc": 29.025947406875773,
+  "time_growth_5pc_to_100pc": 23.917191719171917,
+  "exponent_log_log": 0.9425232426594685,
+  "verdict": "sub-linear in the occluder count"
+}

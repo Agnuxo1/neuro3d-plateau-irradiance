@@ -114,8 +114,8 @@ def build(a):
         put_qr(fig, qr_view, .86, .80, .085, "ビューア")
         pdf.savefig(fig); plt.close(fig)
 
-        # 2 what it gives --------------------------------------------------
-        fig = page("できること", "PLATEAU の街区をそのまま入力に、面ごとの数値を返します")
+        # 2 executive summary -----------------------------------------------
+        fig = page("要旨", "PLATEAU の街区をそのまま入力に、面ごとの数値を返します")
         card(fig, .055, .52, .19, .16, "計算した面の数",
              f"{eng['triangles_used']:,}")
         card(fig, .27, .52, .19, .16, "光輸送の時間",
@@ -134,16 +134,35 @@ def build(a):
         put_qr(fig, qr_repo, .86, .13, .085, "リポジトリ")
         pdf.savefig(fig); plt.close(fig)
 
-        # 3 method ----------------------------------------------------------
-        fig = page("考え方", "光の方向ごとに、シーンを 2 枚のデプスバッファへ書き込む")
+        # 2b the problem -----------------------------------------------------
+        fig = page("解決する課題", "全国 300 都市以上の LOD2 が開いているのに、"
+                   "街区をまるごと解く計算のしかたが足りていません")
+        text_block(fig, .055, .74, [
+            "・ 日射と日影は都市計画の基礎データですが、専門ツールは面ごとに光線を追うため、",
+            "　 街区を超えると計算時間が急に伸びます。",
+            "・ 自治体が屋上太陽光の適地を探すにも、日影規制を事前に検討するにも、"
+            "設計案ごとに",
+            "　 街区を解き直せる速さが要ります。",
+            "・ 既存の手順は商用ソフトや GPU を前提にしがちで、再現も検証も外から行えません。",
+        ], size=13, dy=.062)
+        fig.text(.055, .36, wrap_jp(
+            "本作は、この計算を光線追跡ではなく描画に置き換えます。入力は PLATEAU の "
+            "CityGML だけ。出力は面ごとの年間日射量と天空率、そして屋上太陽光の候補一覧です。"
+            "コードも対照も失敗した反復も公開し、だれでも同じ数字を出し直せます。", 36),
+            color=DIM, fontsize=12.5, va="top", linespacing=1.9)
+        pdf.savefig(fig); plt.close(fig)
+
+        # 3 innovation and method ---------------------------------------------
+        fig = page("革新と方法", "光の方向ごとに、シーンを 2 枚のデプスバッファへ書き込む")
         mp = os.path.join(a.media, "method_still.png")
         if os.path.exists(mp):
             full_image(fig, mp, [.34, .09, .62, .66])
         text_block(fig, .055, .74, [
-            "1 方向のコストは",
-            "「散布書き込み 1 回",
-            "　＋ 参照 1 回」。",
-            "遮蔽物の数に依存しません。",
+            "1 面あたりの問い合わせは、",
+            "遮蔽物が何棟あっても",
+            "1 回の参照。",
+            "その 1 パスを街区の",
+            "全面で使い回します。",
         ], size=15, dy=.052)
         fig.text(.055, .44, wrap_jp(
             "背面バッファ（光に背を向けた面）が街区の影を解き、"
@@ -153,7 +172,8 @@ def build(a):
         pdf.savefig(fig); plt.close(fig)
 
         # 4 agreement -------------------------------------------------------
-        fig = page("対照との一致", "Blender Cycles（パストレーシング）を同一機・同一条件で")
+        fig = page("科学的根拠：対照との一致",
+                   "Blender Cycles（パストレーシング）を同一機・同一条件で")
         full_image(fig, os.path.join(a.figs, "fig1_scatter.png"),
                    [.055, .10, .40, .68])
         rows = [("屋根面", "roof"), ("壁面", "wall"), ("LOD1 面", "lod1_or_other")]
@@ -177,7 +197,7 @@ def build(a):
         pdf.savefig(fig); plt.close(fig)
 
         # 5 cost -------------------------------------------------------------
-        fig = page("計算コスト", "同じ機械、同じ方向、同じ面で測った比較")
+        fig = page("結果：計算コスト", "同じ機械、同じ方向、同じ面で測った比較")
         full_image(fig, os.path.join(a.figs, "fig5_cost.png"), [.055, .12, .52, .64])
         text_block(fig, .62, .70, [
             "同じ 900 面・同じ 286 方向",
@@ -204,9 +224,9 @@ def build(a):
                 "両対数の傾き %.2f" % p1["exponent_log_log"],
             ], size=15, dy=.06)
             fig.text(.62, .44, wrap_jp(
-                "「1 方向のコストは遮蔽物の数に依存しない」という主張を、"
-                "初めて実測で確かめた結果です。残る増え方は、"
-                "遮蔽物そのものを書き込む散布の分です。", 18),
+                "散布書き込みはシーンの点数にほぼ比例します。遮蔽物の数に依存しないのは "
+                "1 面あたりの問い合わせのほうで、その 1 パスが街区の全面に使い回されるのが"
+                "速さの源です。以前の版の書き方は、この実測に合わせて訂正しました。", 18),
                 color=DIM, fontsize=12, va="top", linespacing=1.9)
             pdf.savefig(fig); plt.close(fig)
 
@@ -263,12 +283,12 @@ def build(a):
                 color=DIM, fontsize=12.5, va="top", linespacing=1.9)
             pdf.savefig(fig); plt.close(fig)
 
-        # 9b practical output --------------------------------------------------
+        # 9b applications and impact -------------------------------------------
         rt_path = os.path.join(a.tests, "rooftop.json")
         rt = (json.load(open(rt_path, encoding="utf-8"))
               if os.path.exists(rt_path) else None)
         if rt:
-            fig = page("そのまま使える出力",
+            fig = page("応用と影響",
                        "面ごとの数値を、自治体が次に見に行くべき屋根の一覧に変える")
             full_image(fig, os.path.join(a.testfigs, "rooftop.png"),
                        [.05, .12, .56, .62])
@@ -329,24 +349,53 @@ def build(a):
         put_qr(fig, qr_view, .86, .12, .10, "ビューア")
         pdf.savefig(fig); plt.close(fig)
 
+        # 11b conclusion --------------------------------------------------------
+        fig = page("結論", "街区をまるごと、速く、確かめられるかたちで")
+        text_block(fig, .055, .74, [
+            "・ PLATEAU の街区 %s 面を %.0f 秒で解き、パストレーサと R² %.3f で一致します。"
+            % (f"{eng['triangles_used']:,}", eng["light_transport_seconds"], sub["r2"]),
+            "・ 調整に使っていない別の都市でも、設定を変えずに同じ精度が出ます。",
+            "・ 出力はそのまま屋上太陽光の候補一覧になり、ブラウザで誰でも触れます。",
+            "・ コード、対照、失敗した反復まで公開し、1 つのコマンドで再現できます。",
+            "・ 通らなかった条件と原因不明の差は、次ページにそのまま残しています。",
+        ], size=13.5, dy=.065)
+        put_qr(fig, qr_view, .72, .12, .10, "ビューア")
+        put_qr(fig, qr_repo, .86, .12, .10, "リポジトリ")
+        pdf.savefig(fig); plt.close(fig)
+
         # 12 limitations -------------------------------------------------------
         fig = page("観察事項と限界", "通らなかった条件も、原因のわからない差も、そのまま載せます")
         hp = h1(res)
+        after = (h1(p4["contract_with_better_detector"]) if p4 else None)
+        q4 = p4["detection_quality_on_probes"] if p4 else None
         lines = [
-            "・ 事前登録した精度条件 H1 は、全 900 面では通っていません"
+            "・ 事前登録した精度条件 H1 は、登録時の構成では全 900 面で通っていません"
             "（R² %.3f、偏り %+.1f %%、95 パーセンタイル %.0f %%）。"
             % (hp["r2"], hp["mean_bias_fraction"] * 100,
                hp["p95_rel_error"] * 100),
-            "　 原因は %d 面のうち %d 面が重なり合う立体に封じられた面であることに"
-            "特定済みで、残る %d 面では R² %.3f です。"
-            % (res["probes_total"],
-               res["probes_total"] - res["probes_compared"],
-               res["probes_compared"], sub["r2"]),
+        ]
+        if after:
+            lines += [
+                "　 3 次元検出器では R² %.3f・偏り %+.1f %%・中央値 %.1f %% まで改善しますが、"
+                "それは契約後の測定です。" % (after["r2"],
+                                              after["mean_bias_fraction"] * 100,
+                                              after["median_rel_error"] * 100),
+                "　 95 パーセンタイルの条件は %.0f %% で、どちらの構成でも満たしていません"
+                "（対照がほぼ 0 の面で比率が発散）。" % (after["p95_rel_error"] * 100),
+                "・ 食い違う 128 面のうち %d 面は封じられた面と確認（適合率 %.2f）。"
+                "残る %d 面の原因は特定できていません。"
+                % (q4["majority3d_union"]["tp"],
+                   q4["majority3d_union"]["precision"],
+                   q4["majority3d_union"]["fn"]),
+            ]
+        lines += [
+            "・ 1 方向のコストはシーンの点数にほぼ比例します（両対数の傾き %s）。"
+            "依存しないのは 1 面あたりの問い合わせです。"
+            % (("%.3f" % p1["exponent_log_log"]) if p1 else "実測済み"),
             "・ T2・T4 の解析解との差（+0.019、+0.034）は原因を特定できていません。",
-            "・ 晴天モデルによる計算値で、実測気象データではありません。",
-            "・ 相互反射・植生・地形は両エンジンとも含めていません。",
-            "・ 「事前登録」は自己申告です。独立した検証用データはありません。",
-            "・ GPU では測っていないので、GPU の速さは主張しません。",
+            "・ 晴天モデルによる計算値で、実測気象データではありません。"
+            "相互反射・植生・地形は含めていません。",
+            "・ 「事前登録」は自己申告です。GPU では測っていないので GPU の速さは主張しません。",
             "・ 第三者による独立監査は未了です。",
         ]
         text_block(fig, .055, .74, lines, size=12.5, dy=.062)

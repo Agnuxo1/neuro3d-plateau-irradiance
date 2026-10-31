@@ -1,0 +1,106 @@
+{
+  "test": "P4 three-dimensional sealed-face detection",
+  "criterion": "parity along the six axis directions plus the face normal; sealed when at least five of the seven are odd. Fixed before measuring.",
+  "faces_total": 46862,
+  "found": {
+    "vertical_only": 1924,
+    "majority3d_only": 6008,
+    "union_used": 6008,
+    "new_faces_found_by_3d": 4084
+  },
+  "preprocessing_seconds": 57.9,
+  "detection_quality_on_probes": {
+    "truth": "the path-traced control reports under 1.0 kWh/m2/yr on the probe surface",
+    "dark_probes": 128,
+    "probes": 900,
+    "vertical": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 128,
+      "tn": 772,
+      "precision": NaN,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "majority3d_union": {
+      "tp": 81,
+      "fp": 4,
+      "fn": 47,
+      "tn": 768,
+      "precision": 0.9529411764705882,
+      "recall": 0.6328125,
+      "f1": 0.7605633802816901
+    }
+  },
+  "contract_with_better_detector": {
+    "probes_compared": 772,
+    "probes_total": 900,
+    "C1_calibration_rel_error": 2.20208618475352e-06,
+    "C1_pass": true,
+    "H1_all_probes_preregistered": {
+      "n": 900,
+      "r2": 0.9889696218789451,
+      "mean_bias_kwh": 32.198123159782035,
+      "mean_bias_fraction": 0.042313201564543684,
+      "median_rel_error": 0.025195479684208426,
+      "p95_rel_error": 21.596759289615697,
+      "control_mean_kwh": 760.9474577495083,
+      "own_mean_kwh": 793.1455688476562,
+      "pass": false,
+      "note": "every probe of the stratified sample, as the contract registered it. This is the verdict that counts."
+    },
+    "H1": {
+      "r2": 0.9879218201062244,
+      "mean_bias_kwh": 33.04420988681331,
+      "mean_bias_fraction": 0.03724954159943478,
+      "median_rel_error": 0.029250059378649843,
+      "p95_rel_error": 6.8251721993516155,
+      "control_mean_kwh": 887.1037996160126,
+      "own_mean_kwh": 920.1480102539062,
+      "pass": false,
+      "note": "post-hoc subset: probes where the control exceeds 1 kWh/m2/yr. The exclusion rule was not in the contract."
+    },
+    "H2": {
+      "own_seconds_total": 39.158,
+      "own_surfaces": 40825,
+      "own_seconds_per_surface": 0.0009591671769748929,
+      "control_seconds_total": 1075.59,
+      "control_surfaces": 900,
+      "control_seconds_per_surface": 1.1950999999999998,
+      "speedup_per_surface": 1245.976748046376,
+      "pass": true,
+      "note": "the own engine's cost is amortised over the whole district: one pass per direction serves every surface. equal_load below is the honest like-for-like figure.",
+      "equal_load": {
+        "own_seconds_same_900": 39.294,
+        "speedup": 27.372881355932204,
+        "note": "both engines restricted to the same 900 probe surfaces and the same directions."
+      }
+    },
+    "H3": {
+      "shading_loss_fraction": 0.3551291227340698,
+      "svf_p05": 0.0,
+      "svf_p95": 0.9773327708244324,
+      "pass": true
+    },
+    "by_class": {
+      "wall": {
+        "n": 233,
+        "median_rel_error": 0.06116796009990009,
+        "mean_bias_fraction": 0.08272399534892548,
+        "control_mean_kwh": 420.52083644523685
+      },
+      "roof": {
+        "n": 250,
+        "median_rel_error": 0.01085776228699959,
+        "mean_bias_fraction": 0.019642455392362847,
+        "control_mean_kwh": 1442.8344688251173
+      },
+      "lod1_or_other": {
+        "n": 289,
+        "median_rel_error": 0.03949318569581783,
+        "mean_bias_fraction": 0.04563045803866475,
+        "control_mean_kwh": 782.5403501921878
+      }
+    }
+  }
+}

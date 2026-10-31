@@ -116,13 +116,15 @@ def fig_p4(res, before, out):
     names = ["適合率", "再現率", "F1"]
     for i, (key, nm, col) in enumerate([("vertical", "鉛直のみ（公開版）", WARN),
                                         ("majority3d_union", "3 次元の多数決", OK)]):
-        v = [q[key]["precision"], q[key]["recall"], q[key]["f1"]]
+        v = [0.0 if np.isnan(q[key]["precision"]) else q[key]["precision"],
+             q[key]["recall"], q[key]["f1"]]
         ax.bar(np.arange(3) + i * .38 - .19, v, width=.34, color=col, label=nm)
         for x, y in zip(np.arange(3) + i * .38 - .19, v):
             ax.text(x, y + .02, f"{y:.2f}", ha="center", color=FG, fontsize=9)
-    ax.set_xticks(range(3)); ax.set_xticklabels(names); ax.set_ylim(0, 1.15)
+    ax.set_xticks(range(3)); ax.set_xticklabels(names); ax.set_ylim(0, 1.32)
     ax.set_title("封じられた面の検出（対照を真値として）", color=FG, fontsize=12)
-    ax.legend(frameon=False, labelcolor=DIM, fontsize=9, loc="lower right")
+    ax.legend(frameon=False, labelcolor=DIM, fontsize=9, loc="upper center",
+              ncol=2)
 
     ax = axes[1]
     labels = ["R²", "相対誤差の\n中央値 %", "95 パーセン\nタイル %"]
