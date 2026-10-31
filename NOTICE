@@ -29,8 +29,11 @@ three.js (MIT License), loaded by the web viewer from a public CDN at run
 time; no copy is included in this repository.
     https://threejs.org/
 
-NumPy, PyTorch, Shapely and Matplotlib, used through their public APIs under
-their own licences (BSD-3-Clause, BSD-3-Clause, BSD-3-Clause, PSF/BSD-style).
+NumPy, PyTorch, Shapely, Matplotlib, Pillow and Segno, used through their
+public APIs under their own licences (BSD-3-Clause, BSD-3-Clause,
+BSD-3-Clause, PSF/BSD-style, MIT-CMU, BSD-3-Clause). Pillow writes the
+animated GIFs and the video frames; Segno draws the QR codes on the
+application PDF.
 
 Solar geometry follows the NOAA Solar Calculator equations (public domain).
 The clear-sky model follows Hottel (1976) and the Liu-Jordan diffuse

@@ -220,8 +220,17 @@ def run(args) -> dict:
             buried = nz["buried"]
     else:
         n, fallback = orient_outward(tri, n, sem, data["tri_bldg"])
-    scene_mask = np.isfinite(n).all(1) & (area > 1e-6)
-    keep = scene_mask & ~buried
+    valid = np.isfinite(n).all(1) & (area > 1e-6)
+    scene_mask = valid.copy()
+    if args.scene_bldg_frac < 1.0:
+        # Scaling measurement: the queried surfaces stay exactly the same and
+        # only the number of occluders in the scene changes, so the measured
+        # time isolates the cost of the occluders.
+        ids = np.unique(data["tri_bldg"])
+        k = max(1, int(round(len(ids) * args.scene_bldg_frac)))
+        sub = np.random.default_rng(args.scene_seed).permutation(ids)[:k]
+        scene_mask &= np.isin(data["tri_bldg"], sub)
+    keep = valid & ~buried
     if args.only_index:
         # Equal-load measurement: the scene stays complete, but only the
         # listed surfaces are queried, so the cost can be compared with a
@@ -320,6 +329,9 @@ def run(args) -> dict:
         "gpu": torch.cuda.get_device_name(0) if dev.type == "cuda" else None,
         "triangles": int(len(tri)),
         "triangles_used": int(keep.sum()),
+        "scene_bldg_frac": args.scene_bldg_frac,
+        "scene_triangles": int(scene_mask.sum()),
+        "scene_buildings": int(len(np.unique(data["tri_bldg"][scene_mask]))),
         "splat_points": int(len(pts)),
         "texel_m": args.texel,
         "neigh": args.neigh,
@@ -369,6 +381,10 @@ def main() -> None:
     ap.add_argument("--enclosed-threshold", type=float, default=0.02,
                     help="sky fraction below which a surface is called enclosed")
     ap.add_argument("--normals", default="", help="npz from orient_normals.py")
+    ap.add_argument("--scene-bldg-frac", type=float, default=1.0,
+                    help="fraction of the buildings kept as occluders in the "
+                         "scene; the queried surfaces are unchanged")
+    ap.add_argument("--scene-seed", type=int, default=0)
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--seed", type=int, default=0)
     run(ap.parse_args())

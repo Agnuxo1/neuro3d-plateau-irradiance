@@ -1,0 +1,215 @@
+{
+ "assumptions": {
+  "module_efficiency": 0.2,
+  "performance_ratio": 0.8,
+  "min_roof_tilt_cos": 0.7,
+  "min_usable_area_m2": 20.0,
+  "note": "clear-sky irradiance from the engine, not measured weather and not a site survey"
+ },
+ "buildings_listed": 908,
+ "usable_roof_area_m2": 357655.0,
+ "district_estimated_annual_kwh": 82115220.0,
+ "district_estimated_annual_mwh": 82115.2,
+ "top": [
+  {
+   "building_id": "bldg_ea421ba6-eb66-475c-a807-77335f210a4",
+   "usable_roof_area_m2": 22674.4,
+   "mean_annual_irradiance_kwh_m2": 1282.2,
+   "estimated_annual_kwh": 4651832.0,
+   "roof_facets": 127,
+   "east_m": -560.9,
+   "north_m": 720.0,
+   "height_m": 17.3
+  },
+  {
+   "building_id": "bldg_a848a648-a72d-4f6e-99d7-88b7bf07459",
+   "usable_roof_area_m2": 20310.0,
+   "mean_annual_irradiance_kwh_m2": 1215.4,
+   "estimated_annual_kwh": 3949515.0,
+   "roof_facets": 408,
+   "east_m": -362.8,
+   "north_m": 461.6,
+   "height_m": 153.3
+  },
+  {
+   "building_id": "bldg_bf47978c-3c61-4768-b518-e3779987966",
+   "usable_roof_area_m2": 13540.7,
+   "mean_annual_irradiance_kwh_m2": 1353.4,
+   "estimated_annual_kwh": 2932148.0,
+   "roof_facets": 103,
+   "east_m": -143.2,
+   "north_m": 531.4,
+   "height_m": 53.3
+  },
+  {
+   "building_id": "bldg_ae137e03-6102-4fed-b4ec-6e00b348c3a",
+   "usable_roof_area_m2": 12098.9,
+   "mean_annual_irradiance_kwh_m2": 1463.8,
+   "estimated_annual_kwh": 2833737.0,
+   "roof_facets": 190,
+   "east_m": -376.2,
+   "north_m": 322.3,
+   "height_m": 65.4
+  },
+  {
+   "building_id": "bldg_8370ad9d-fb21-4244-a229-5fddbb0c768",
+   "usable_roof_area_m2": 7903.8,
+   "mean_annual_irradiance_kwh_m2": 1400.6,
+   "estimated_annual_kwh": 1771199.0,
+   "roof_facets": 167,
+   "east_m": -295.4,
+   "north_m": 633.2,
+   "height_m": 15.2
+  },
+  {
+   "building_id": "bldg_8f07467c-dfc9-44b3-aca2-7ca1c861070",
+   "usable_roof_area_m2": 4232.6,
+   "mean_annual_irradiance_kwh_m2": 1670.7,
+   "estimated_annual_kwh": 1131463.0,
+   "roof_facets": 75,
+   "east_m": -3.2,
+   "north_m": 260.5,
+   "height_m": 32.3
+  },
+  {
+   "building_id": "bldg_71814e32-3252-4cb9-b075-1e4b5cea0d0",
+   "usable_roof_area_m2": 6282.5,
+   "mean_annual_irradiance_kwh_m2": 1119.2,
+   "estimated_annual_kwh": 1125000.0,
+   "roof_facets": 57,
+   "east_m": -488.0,
+   "north_m": 378.2,
+   "height_m": 21.9
+  },
+  {
+   "building_id": "bldg_365692f5-d44e-47b1-a70d-64d99d53d58",
+   "usable_roof_area_m2": 3692.5,
+   "mean_annual_irradiance_kwh_m2": 1789.4,
+   "estimated_annual_kwh": 1057174.0,
+   "roof_facets": 106,
+   "east_m": -392.3,
+   "north_m": 648.4,
+   "height_m": 20.3
+  },
+  {
+   "building_id": "bldg_663dd8e6-97b5-4a6e-904a-14363e37322",
+   "usable_roof_area_m2": 3899.6,
+   "mean_annual_irradiance_kwh_m2": 1645.6,
+   "estimated_annual_kwh": 1026756.0,
+   "roof_facets": 98,
+   "east_m": -496.7,
+   "north_m": 692.3,
+   "height_m": 27.8
+  },
+  {
+   "building_id": "bldg_c78f6e35-c0c7-480f-aeb5-c88259e8e26",
+   "usable_roof_area_m2": 3553.3,
+   "mean_annual_irradiance_kwh_m2": 1709.0,
+   "estimated_annual_kwh": 971630.0,
+   "roof_facets": 30,
+   "east_m": -428.3,
+   "north_m": 150.8,
+   "height_m": 30.4
+  },
+  {
+   "building_id": "bldg_7697901b-5004-4128-a1e1-d3f7bbc3a9e",
+   "usable_roof_area_m2": 3749.8,
+   "mean_annual_irradiance_kwh_m2": 1591.1,
+   "estimated_annual_kwh": 954610.0,
+   "roof_facets": 66,
+   "east_m": -477.4,
+   "north_m": 334.9,
+   "height_m": 56.5
+  },
+  {
+   "building_id": "bldg_f90ef096-5e50-4dab-a8af-47a47d2b856",
+   "usable_roof_area_m2": 3782.8,
+   "mean_annual_irradiance_kwh_m2": 1550.8,
+   "estimated_annual_kwh": 938633.0,
+   "roof_facets": 38,
+   "east_m": -459.4,
+   "north_m": 430.8,
+   "height_m": 41.5
+  },
+  {
+   "building_id": "bldg_d2267f4a-046e-42e1-9737-55c973cd018",
+   "usable_roof_area_m2": 4800.9,
+   "mean_annual_irradiance_kwh_m2": 1195.5,
+   "estimated_annual_kwh": 918352.0,
+   "roof_facets": 37,
+   "east_m": -147.2,
+   "north_m": 398.0,
+   "height_m": 39.6
+  },
+  {
+   "building_id": "bldg_14c4ee1d-33ad-4b24-a93d-b644b0d8952",
+   "usable_roof_area_m2": 2539.0,
+   "mean_annual_irradiance_kwh_m2": 1819.9,
+   "estimated_annual_kwh": 739310.0,
+   "roof_facets": 16,
+   "east_m": -319.8,
+   "north_m": 153.8,
+   "height_m": 97.5
+  },
+  {
+   "building_id": "bldg_481a3c07-5736-4371-9dcd-61736167cae",
+   "usable_roof_area_m2": 2460.5,
+   "mean_annual_irradiance_kwh_m2": 1819.6,
+   "estimated_annual_kwh": 716333.0,
+   "roof_facets": 89,
+   "east_m": 39.9,
+   "north_m": -86.3,
+   "height_m": 57.6
+  },
+  {
+   "building_id": "bldg_75873d22-93eb-4b55-882f-b116fb7aaf4",
+   "usable_roof_area_m2": 2970.7,
+   "mean_annual_irradiance_kwh_m2": 1483.7,
+   "estimated_annual_kwh": 705245.0,
+   "roof_facets": 188,
+   "east_m": -697.7,
+   "north_m": 618.0,
+   "height_m": 29.2
+  },
+  {
+   "building_id": "bldg_a18c05f8-7805-400d-9e41-f1792600d5b",
+   "usable_roof_area_m2": 3201.4,
+   "mean_annual_irradiance_kwh_m2": 1365.2,
+   "estimated_annual_kwh": 699318.0,
+   "roof_facets": 7,
+   "east_m": -161.8,
+   "north_m": 340.0,
+   "height_m": 18.9
+  },
+  {
+   "building_id": "bldg_ef54bb74-a5c7-48e3-b1a4-c2464c186fd",
+   "usable_roof_area_m2": 2624.4,
+   "mean_annual_irradiance_kwh_m2": 1592.8,
+   "estimated_annual_kwh": 668819.0,
+   "roof_facets": 37,
+   "east_m": -297.9,
+   "north_m": 199.0,
+   "height_m": 71.9
+  },
+  {
+   "building_id": "bldg_0b6494cf-a982-4faa-a549-899bc1405d6",
+   "usable_roof_area_m2": 2684.0,
+   "mean_annual_irradiance_kwh_m2": 1529.9,
+   "estimated_annual_kwh": 656996.0,
+   "roof_facets": 28,
+   "east_m": -697.9,
+   "north_m": 509.5,
+   "height_m": 22.8
+  },
+  {
+   "building_id": "bldg_0c86f739-3fb5-4ca7-bb6a-acedac5e919",
+   "usable_roof_area_m2": 2022.6,
+   "mean_annual_irradiance_kwh_m2": 1928.4,
+   "estimated_annual_kwh": 624053.0,
+   "roof_facets": 8,
+   "east_m": 29.3,
+   "north_m": 474.7,
+   "height_m": 30.2
+  }
+ ]
+}

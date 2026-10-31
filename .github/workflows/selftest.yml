@@ -18,5 +18,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install numpy==2.2.6
           pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+      - name: Every script compiles
+        run: python -m compileall -q code
       - name: Shadow-map self-tests against analytic cases
         run: python code/selftest_shadow.py
+      - name: Sealed-face detector on a synthetic enclosure
+        run: python code/selftest_sealed.py
