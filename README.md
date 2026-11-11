@@ -7,6 +7,10 @@ GPU なし。パストレーサとの一致は R² 0.985、調整に使ってい
 [![自動試験](https://github.com/Agnuxo1/neuro3d-plateau-irradiance/actions/workflows/selftest.yml/badge.svg)](https://github.com/Agnuxo1/neuro3d-plateau-irradiance/actions/workflows/selftest.yml)
 [![ライセンス](https://img.shields.io/badge/licence-Apache--2.0-8fd14f)](LICENSE)
 
+<!-- impact-note:start -->
+<sub><strong>Efficiency and practical value.</strong> Reusing depth buffers across a district reduces repeated visibility work: the repository reports 26.5-fold faster evaluation than Cycles for the same 900 surfaces and 286 directions. CPU-based solar and shade screening can help prioritise rooftop renewables and urban design studies. These are computational and modelled planning benefits, with accuracy limits and physical validation still relevant. See the <a href="experiments/LOG.md">experiment record</a>.</sub>
+<!-- impact-note:end -->
+
 ## 🎬 公式デモ動画 / Official demo video — YouTube
 
 [![Neuro3D × PLATEAU — Watch the Japanese-narrated demonstration on YouTube](https://img.youtube.com/vi/-YUxjHP-tCo/hqdefault.jpg)](https://youtu.be/-YUxjHP-tCo)
